@@ -29,16 +29,20 @@
 - Improvements for editing in RTL are planned. USFM tags are mostly LTR, though those start with a neutral character (/). This character (/) takes on the RTL direction characteristics thus get rendered on the opposite side of the USFM tag from which it is written. The "Forced LTR USFM" buttons [here](https://codesandbox.io/p/sandbox/font-detect-rhl-usedetectdir-default-regex-2sdsmt?file=%2Fsrc%2Fcomponents%2FHighlightMatches.jsx) show room for display improvement, and the other RTL buttons show examples of the challenges of editing USFM in RTL.
 - See [USFM 3.0 Specs](https://ubsicap.github.io/usfm/).
 
-## Limitations:
+## Limitations
 - Currently only a single usfm file can be opened at a time.
 - USFM tags support is limited to tags supported by [oce-editor-tools-mui-core](https://oce-editor-tools-mui-core.netlify.app/) and the javascript libraries that it utilizes.
 - Alignment marker placeholders will be added in the USFM around words that do not yet have them. This will not be what you want unless you are working with USFM that is already aligned to the original language using this method of alignment.
 - Print does not prevent subheadings from being the last line of a column or page.
 - General font-size and line-height percent settings are applied, with the relative difference between elements of different sizes fixed, and not currently customizable (e.g., titles, headings, chapter numbers, verse numbers, etc.).
 - Arabic numerals (0123456789) are the only numbering system offered for chapters and verses.
-- *Backup you work before using the USFM Editor.* It is the only way to make edits related to USFM markers such as spanning verses or adjusting paragraphs. However, there are some aspects for which usability needs to be improved, especially as it pertains to RTL translations. Please consider the USFM Editor to be experimental.
- - Wrapper markers are currently added by default around each word for alignment purposes. This will be changed in a future release to support usfm files that are not meant to be aligned.
+- *Backup you work before using the USFM Editor and consider it to be experimental.*
+- Wrapper markers are currently added by default around each word for alignment purposes. This will be included in any saved usfm files, though may not be what you want.
+- Please overlook the "Edit a Graft" pop-ups over element like subheadings in read-only mode. These are only editable in edit mode.  A "graft" is a technical term here for element that is not a part of chapter and verse content.
 - Undo/redo icons are currently presented in LTR order for RTL languages.
+
+## Getting Started
+- There are many good translation apps and ongoing translation app projects that are excellent (e.g., [Scribe Scripture Editor](https://scribe.bible/), [Paratext](https://paratext.org/), and others). Start your projects with one of them and use them if the fonts and font features available can work for your cultural context and writing style. For the cases where they don't, you can export your work, then open it here in Firefox to access smart font features.
 
 ## Endnotes <sub><sup>... [↩](#toc)</sup></sub>
 [<b id="f1">1</b>] ... [Firefox](https://www.mozilla.org/) supports [Graphite](https://graphite.sil.org/). Other browsers do not yet do so, including Google Chrome, Safari, Microsoft Edge, Brave, Opera, DuckDuckGo, Vivaldi, with the notable exception of some Firefox browser forks such as [Pale Moon](https://www.palemoon.org/). ... [↩](#a1)
