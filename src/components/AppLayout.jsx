@@ -149,7 +149,7 @@ export default function AppLayout() {
       >
       {!usfmFileLoaded && !loading && 
         (<Header 
-          title={"Translatable"}
+          title={"Translatable-FF"}
           onOpenClick={handleOpen}
         />)}
       </Paper>
@@ -173,7 +173,7 @@ export default function AppLayout() {
               }}
             >
               <Header 
-                title={"Translatable"}
+                title={"Translatable-FF"}
                 onOpenClick={handleOpen}
               />
             </Box>
