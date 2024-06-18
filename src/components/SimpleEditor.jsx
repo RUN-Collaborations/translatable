@@ -55,8 +55,11 @@ export default function SimpleEditor(simpleEditorProps) {
     [docSetId, filePath]
   );
 
+  const [usfmTextSaved, setUsfmTextSaved] = useState(usfmText);
+
   const onSave = (bookId, usfmText) => {
-    SaveFile(filePath,usfmText)
+    SaveFile(filePath,usfmText);
+    setUsfmTextSaved(usfmText);
   };
 
   useEffect(() => {
@@ -100,7 +103,7 @@ const [agca, setAgca] = useState(returnedAgca);
 const selectedFontFeatureSettings = '"hehk"' + hehk + ', "hedo"' + hedo + ', "lamv"' + lamv + ', "cv85"' + cv85 + ', "cv78"' + cv78 + ', "hamz"' + hamz + ', "punc"' + punc + ', "wdsp"' + wdsp + ', "shrt"' + shrt + ', "agca"' + agca;
 
 const printData = {
-  usfmText: usfmText,
+  usfmText: usfmTextSaved,
   quoteOrNot: quoteOrNot,
   selectedFontName: selectedFontName,
   selectedFontId: selectedFontId,
