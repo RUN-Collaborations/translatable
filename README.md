@@ -1,4 +1,4 @@
-# Translatable
+# Translatable-FF: Translatable and Printable with Font Features
 
 ## Project Goals
 - Edit and print existing usfm files

@@ -125,7 +125,7 @@ export default function ToolbarCustom(toolbarCustomProps) {
               variant='h4'
               sx={sx.title}
           >
-              Translatable
+              Translatable-FF
           </Typography>
         </div>
         <div style={{ textAlign: "center", fontFamily: keywordFont, fontSize: '12px', lineHeight: '24px' }} key="custom-menu">
