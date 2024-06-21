@@ -106,7 +106,6 @@ export default function ToolbarSelectFont(ToolbarSelectFontProps) {
           <Select
               labelId="select-font-label"
               name="select-font-name"
-              id="select-font-id"
               inputProps={{
               id: "select-font-id",
               }}

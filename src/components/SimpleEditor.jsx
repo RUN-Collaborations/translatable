@@ -10,6 +10,8 @@ import Header from './Header';
 import { hasUnsavedData } from "../helpers/hasUnsavedData";
 import ToolbarCustom from "./ToolbarCustom";
 import { useDetectDir } from "font-detect-rhl";
+import { Redo, Undo } from '@mui/icons-material';
+import { useAssumeGraphite } from "font-detect-rhl";
 
 const SaveFile = (fileName,text) => {
     fileDownload(text, fileName);
@@ -71,126 +73,156 @@ export default function SimpleEditor(simpleEditorProps) {
     if (epiteleteHtml) loadUsfm()
   }, [epiteleteHtml, usfmText])
 
+  const isFirefox = useAssumeGraphite({});
   const dir = useDetectDir({ text: usfmText, isMarkup: true, ratioThreshold: .51 });
   const [textAlign, setTextAlign] = useState("left");
+  const [sortRedo, setSortRedo] = useState(isFirefox ? -1 : 0);
+  const [sortOthers, setSortOthers] = useState(0);
   useEffect(() => {
-    if (dir === "rtl") setTextAlign("right");
-  }, [dir, textAlign])
+    if (dir === "rtl") {
+      setTextAlign("right");
+      setSortRedo(isFirefox ? -1 : 0);
+      setSortOthers(isFirefox ? 1 : -1);
+    }
+  }, [dir, isFirefox])
 
-const [isDisabled, setIsDisabled] = useState(false);
-const [isOpen,setIsOpen] = useState(true);
-const bookId = 'XYZ';
+  const [isDisabled, setIsDisabled] = useState(false);
+  const [isOpen,setIsOpen] = useState(true);
+  const bookId = 'XYZ';
 
-const navigate = useNavigate();
+  const navigate = useNavigate();
 
-const [selectedFontName, setSelectedFontName] = useState(returnedSelectedFontName);
-const [selectedFontId, setSelectedFontId] = useState(returnedSelectedFontId);
-const [quoteOrNot, setQuoteOrNot] = useState(returnedQuoteOrNot);
-const [selectedFontSize, setSelectedFontSize] = useState(returnedFontSize);
-const [selectedLineHeight, setSelectedLineHeight] = useState(returnedLineHeight);
+  const [selectedFontName, setSelectedFontName] = useState(returnedSelectedFontName);
+  const [selectedFontId, setSelectedFontId] = useState(returnedSelectedFontId);
+  const [quoteOrNot, setQuoteOrNot] = useState(returnedQuoteOrNot);
+  const [selectedFontSize, setSelectedFontSize] = useState(returnedFontSize);
+  const [selectedLineHeight, setSelectedLineHeight] = useState(returnedLineHeight);
 
-const [hehk, setHehk] = useState(returnedHehk);
-const [hedo, setHedo] = useState(returnedHedo);
-const [lamv, setLamv] = useState(returnedLamv);
-const [cv85, setCv85] = useState(returnedCv85);
-const [cv78, setCv78] = useState(returnedCv78);
-const [hamz, setHamz] = useState(returnedHamz);
-const [punc, setPunc] = useState(returnedPunc);
-const [wdsp, setWdsp] = useState(returnedWdsp);
-const [shrt, setShrt] = useState(returnedShrt);
-const [agca, setAgca] = useState(returnedAgca);
+  const [hehk, setHehk] = useState(returnedHehk);
+  const [hedo, setHedo] = useState(returnedHedo);
+  const [lamv, setLamv] = useState(returnedLamv);
+  const [cv85, setCv85] = useState(returnedCv85);
+  const [cv78, setCv78] = useState(returnedCv78);
+  const [hamz, setHamz] = useState(returnedHamz);
+  const [punc, setPunc] = useState(returnedPunc);
+  const [wdsp, setWdsp] = useState(returnedWdsp);
+  const [shrt, setShrt] = useState(returnedShrt);
+  const [agca, setAgca] = useState(returnedAgca);
 
-const selectedFontFeatureSettings = '"hehk"' + hehk + ', "hedo"' + hedo + ', "lamv"' + lamv + ', "cv85"' + cv85 + ', "cv78"' + cv78 + ', "hamz"' + hamz + ', "punc"' + punc + ', "wdsp"' + wdsp + ', "shrt"' + shrt + ', "agca"' + agca;
+  const selectedFontFeatureSettings = '"hehk"' + hehk + ', "hedo"' + hedo + ', "lamv"' + lamv + ', "cv85"' + cv85 + ', "cv78"' + cv78 + ', "hamz"' + hamz + ', "punc"' + punc + ', "wdsp"' + wdsp + ', "shrt"' + shrt + ', "agca"' + agca;
 
-const printData = {
-  usfmText: usfmTextSaved,
-  quoteOrNot: quoteOrNot,
-  selectedFontName: selectedFontName,
-  selectedFontId: selectedFontId,
-  selectedFontSize: selectedFontSize,
-  selectedLineHeight: selectedLineHeight,
-  hehk: hehk,
-  hedo: hedo,
-  lamv: lamv,
-  cv85: cv85,
-  cv78: cv78,
-  hamz: hamz,
-  punc: punc,
-  wdsp: wdsp,
-  shrt: shrt,
-  agca: agca,
-  filePath,
-}
+  const printData = {
+    usfmText: usfmTextSaved,
+    quoteOrNot: quoteOrNot,
+    selectedFontName: selectedFontName,
+    selectedFontId: selectedFontId,
+    selectedFontSize: selectedFontSize,
+    selectedLineHeight: selectedLineHeight,
+    hehk: hehk,
+    hedo: hedo,
+    lamv: lamv,
+    cv85: cv85,
+    cv78: cv78,
+    hamz: hamz,
+    punc: punc,
+    wdsp: wdsp,
+    shrt: shrt,
+    agca: agca,
+    filePath,
+  }
 
-const handleNotSavedClick = (epiteleteHtml, bookId, link) => {
-  setIsOpen(!isOpen)
-  if (hasUnsavedData(epiteleteHtml, bookId)) {
-    setIsDisabled(true);
-  } else {
-    setIsDisabled(false);
-    if (link === 'print') navigate('print', { state: {printData} });
-    if (link === 'usfm') navigate('usfm', { state: {printData} });
-    if (link === 'open') {
-      handleOpen();
+  const handleNotSavedClick = (epiteleteHtml, bookId, link) => {
+    setIsOpen(!isOpen)
+    if (hasUnsavedData(epiteleteHtml, bookId)) {
+      setIsDisabled(true);
+    } else {
+      setIsDisabled(false);
+      if (link === 'print') navigate('print', { state: {printData} });
+      if (link === 'usfm') navigate('usfm', { state: {printData} });
+      if (link === 'open') {
+        handleOpen();
+      }
     }
   }
-}
 
-const handlePreventClick = async(event) => {
-  event.preventDefault();
-  const link = event.currentTarget.id;
-  handleNotSavedClick(epiteleteHtml, bookId, link);
-}
+  const handlePreventClick = async(event) => {
+    event.preventDefault();
+    const link = event.currentTarget.id;
+    handleNotSavedClick(epiteleteHtml, bookId, link);
+  }
 
-const ref = useRef(null);
+  const ref = useRef(null);
 
-const handleClick = () => {
-  // Gets "Edit a Graft" div on the 2nd click. Is there a way to get it on the 1st click so as to re-write "Edit a Graft"
-    const graftEdit = document.getElementById("draggable-dialog-title");
-      console.log(graftEdit)
-  handleNotSavedClick(epiteleteHtml,bookId, null);
-};
+  const handleClick = () => {
+    // Gets "Edit a Graft" div on the 2nd click. Is there a way to get it on the 1st click so as to re-write "Edit a Graft"
+      const graftEdit = document.getElementById("draggable-dialog-title");
+        console.log(graftEdit)
+    handleNotSavedClick(epiteleteHtml,bookId, null);
+  };
 
-const toolbarCustomProps = {
-  selectedFontName,
-  setSelectedFontName,
-  selectedFontId,
-  setSelectedFontId,
-  quoteOrNot,
-  setQuoteOrNot,
-  selectedFontSize,
-  setSelectedFontSize,
-  selectedLineHeight,
-  setSelectedLineHeight,
-  isDisabled,
-  handlePreventClick,
-  hehk,
-  setHehk,
-  hedo,
-  setHedo,
-  lamv,
-  setLamv,
-  cv85,
-  setCv85,
-  cv78,
-  setCv78,
-  hamz,
-  setHamz,
-  punc,
-  setPunc,
-  wdsp,
-  setWdsp,
-  shrt,
-  setShrt,
-  agca,
-  setAgca,
-  ...props,
-};
+  const toolbarCustomProps = {
+    selectedFontName,
+    setSelectedFontName,
+    selectedFontId,
+    setSelectedFontId,
+    quoteOrNot,
+    setQuoteOrNot,
+    selectedFontSize,
+    setSelectedFontSize,
+    selectedLineHeight,
+    setSelectedLineHeight,
+    isDisabled,
+    handlePreventClick,
+    hehk,
+    setHehk,
+    hedo,
+    setHedo,
+    lamv,
+    setLamv,
+    cv85,
+    setCv85,
+    cv78,
+    setCv78,
+    hamz,
+    setHamz,
+    punc,
+    setPunc,
+    wdsp,
+    setWdsp,
+    shrt,
+    setShrt,
+    agca,
+    setAgca,
+    ...props,
+  };
 
-  const onRenderToolbar = ({ items }) => [
-    ...items.filter((item) => item?.key !== "alignmentBroken" ).filter((item) => item?.key !== "print"), // lock is already not applicable
+  const onRenderToolbar = ({items: toolbarItems}) =>
+    [ toolbarItems
+      .filter((item) => item?.key !== "alignmentBroken" ).filter((item) => item?.key !== "print")
+      .sort((item) => (item?.index === 4) ? sortRedo : sortOthers)
+      .map((item) => {
+      if(item.key === "undo") {
+        return {
+          ...item,
+          props: {
+            ...item.props,
+            children: [dir === 'ltr' ? <Undo key="undo" /> : <Redo key="undo" />]
+          }
+        }
+      }
+      if(item.key === "redo") {
+        return {
+          ...item,
+          props: {
+            ...item.props,
+            children: [dir === 'ltr' ? <Redo key="redo" /> : <Undo key="redo" />]
+          }
+        }
+      }
+      return item
+    }),
     <ToolbarCustom key="custom toolbar" {...toolbarCustomProps} />
-  ]
+  ];
 
   const editorProps = {
     epiteleteHtml,
