@@ -11,6 +11,7 @@ import { hasUnsavedData } from "../helpers/hasUnsavedData";
 import ToolbarCustom from "./ToolbarCustom";
 import { useDetectDir } from "font-detect-rhl";
 import { Redo, Undo } from '@mui/icons-material';
+import { useAssumeGraphite } from "font-detect-rhl";
 
 const SaveFile = (fileName,text) => {
     fileDownload(text, fileName);
@@ -72,18 +73,18 @@ export default function SimpleEditor(simpleEditorProps) {
     if (epiteleteHtml) loadUsfm()
   }, [epiteleteHtml, usfmText])
 
+  const isFirefox = useAssumeGraphite({});
   const dir = useDetectDir({ text: usfmText, isMarkup: true, ratioThreshold: .51 });
   const [textAlign, setTextAlign] = useState("left");
-  const [sortValue, setSortValue] = useState(0);
+  const [sortRedo, setSortRedo] = useState(isFirefox ? -1 : 0);
+  const [sortOthers, setSortOthers] = useState(0);
   useEffect(() => {
     if (dir === "rtl") {
       setTextAlign("right");
-      setSortValue(1);
+      setSortRedo(isFirefox ? -1 : 0);
+      setSortOthers(isFirefox ? 1 : -1);
     }
-  }, [dir])
-
-  console.log(textAlign)
-  console.log(sortValue)
+  }, [dir, isFirefox])
 
   const [isDisabled, setIsDisabled] = useState(false);
   const [isOpen,setIsOpen] = useState(true);
@@ -198,14 +199,14 @@ export default function SimpleEditor(simpleEditorProps) {
   const onRenderToolbar = ({items: toolbarItems}) =>
     [ toolbarItems
       .filter((item) => item?.key !== "alignmentBroken" ).filter((item) => item?.key !== "print")
-      .sort((item) => item?.index === 4 ? -1 : sortValue)
+      .sort((item) => (item?.index === 4) ? sortRedo : sortOthers)
       .map((item) => {
       if(item.key === "undo") {
         return {
           ...item,
           props: {
             ...item.props,
-            children: [dir === 'ltr' ? <Undo /> : <Redo />]
+            children: [dir === 'ltr' ? <Undo key="undo" /> : <Redo key="undo" />]
           }
         }
       }
@@ -214,7 +215,7 @@ export default function SimpleEditor(simpleEditorProps) {
           ...item,
           props: {
             ...item.props,
-            children: [dir === 'ltr' ? <Redo /> : <Undo />]
+            children: [dir === 'ltr' ? <Redo key="redo" /> : <Undo key="redo" />]
           }
         }
       }
