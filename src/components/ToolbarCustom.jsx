@@ -170,7 +170,7 @@ export default function ToolbarCustom(toolbarCustomProps) {
   );
 }
 
-ToolbarLineHeight.propTypes = {
+ToolbarCustom.propTypes = {
   /** Selected Font Name */
   selectedFontName: PropTypes.string,
   /** Set Selected Font Name */
@@ -196,43 +196,43 @@ ToolbarLineHeight.propTypes = {
   /** Handle Prevent Click */
   handlePreventClick: PropTypes.func.isRequired,
   /** Hook on medial heh-goal */
-  hehk: PropTypes.string,
+  hehk: PropTypes.number,
   /** Set hook on medial heh-goal */
   setHehk: PropTypes.func.isRequired,
   /** Initial heh doachashmee */
-  hedo: PropTypes.string,
+  hedo: PropTypes.number,
   /** Set initial heh doachashmee */
   setHedo: PropTypes.func.isRequired,
   /** Lam with V */
-  lamv: PropTypes.string,
+  lamv: PropTypes.number,
   /** Set lam with V */
   setLamv: PropTypes.func.isRequired,
   /** Full stop */
-  cv85: PropTypes.string,
+  cv85: PropTypes.number,
   /** Set full stop */
   setCv85: PropTypes.func.isRequired,
   /** Sukun/jazm */
-  cv78: PropTypes.string,
+  cv78: PropTypes.number,
   /** Set sukun/jazm */
   setCv78: PropTypes.func.isRequired,
   /** Hamza */
-  hamz: PropTypes.string,
+  hamz: PropTypes.number,
   /** Set hamza */
   setHamz: PropTypes.func.isRequired,
   /** Punctuation */
-  punc: PropTypes.string,
+  punc: PropTypes.number,
   /** Set punctuation */
   setPunc: PropTypes.func.isRequired,
   /** Word spacing */
-  wdsp: PropTypes.string,
+  wdsp: PropTypes.number,
   /** Set word spacing */
   setWdsp: PropTypes.func.isRequired,
   /** Short forms */
-  shrt: PropTypes.string,
+  shrt: PropTypes.number,
   /** Set short forms */
   setShrt: PropTypes.func.isRequired,
   /** Collision avoidance */
-  agca: PropTypes.string,
+  agca: PropTypes.number,
   /** Set collision avoidance */
   setAgca: PropTypes.func.isRequired,
 };

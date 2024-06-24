@@ -28,7 +28,9 @@ export default function ToolbarLineHeight(ToolbarLineHeightProps) {
   }, [lineHeightValue]);
 
   useEffect(() => {
-    setSelectedLineHeight(lineHeight / 100);
+    const lineHeightNum = lineHeight / 100;
+    const lineHeightString = lineHeightNum.toString();
+    setSelectedLineHeight(lineHeightString);
   }, [lineHeight, selectedLineHeight, setSelectedLineHeight]);
 
   const refLineHeight = React.useRef();
@@ -57,14 +59,13 @@ export default function ToolbarLineHeight(ToolbarLineHeightProps) {
                     '& .MuiInputAdornment-root': {fontSize: '.9em'}
                   },
                   endAdornment:
-                    <InputAdornment position="end" classes="sizeSmall" sx={{position: 'absolute', right: 23, bottom: 7 }}>%</InputAdornment>,
+                    <InputAdornment position="end" sx={{position: 'absolute', right: 23, bottom: 7 }}>%</InputAdornment>,
                  }}
                   placeholder="Height"
                   type="text"
                   id="lineHeight"
                   name="lineHeight"
                   inputRef={refLineHeight}
-                  defaultValue={lineHeight}
                   value={lineHeightValue}
                   onChange={handleEnsureNumber}
                 />

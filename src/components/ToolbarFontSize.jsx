@@ -58,14 +58,13 @@ export default function ToolbarFontSize(ToolbarFontSizeProps) {
                     '& .MuiInputAdornment-root': {fontSize: '.9em',fontWeight: 'bolder'}
                   },
                   endAdornment:
-                    <InputAdornment position="end" classes="sizeSmall" sx={{position: 'absolute', right: 23 , bottom: 7 }}>%</InputAdornment>,
+                    <InputAdornment position="end" sx={{position: 'absolute', right: 23 , bottom: 7 }}>%</InputAdornment>,
                  }}
                   placeholder="Size"
                   type="text"
                   id="fontSize"
                   name="fontSize"
                   inputRef={refFontSize}
-                  defaultValue={fontSize}
                   value={fontSizeValue}
                   onChange={handleEnsureNumber}
                 />
