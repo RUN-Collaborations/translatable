@@ -57,7 +57,7 @@ export default function ToolbarLineHeight(ToolbarLineHeightProps) {
                     '& .MuiInputAdornment-root': {fontSize: '.9em'}
                   },
                   endAdornment:
-                    <InputAdornment position="end" classes="sizeSmall" sx={{position: 'absolute', right: 23, bottom: 7 }}>%</InputAdornment>,
+                    <InputAdornment position="end" sx={{position: 'absolute', right: 23, bottom: 7 }}>%</InputAdornment>,
                  }}
                   placeholder="Height"
                   type="text"
