@@ -28,7 +28,9 @@ export default function ToolbarLineHeight(ToolbarLineHeightProps) {
   }, [lineHeightValue]);
 
   useEffect(() => {
-    setSelectedLineHeight(lineHeight / 100);
+    const lineHeightNum = lineHeight / 100;
+    const lineHeightString = lineHeightNum.toString();
+    setSelectedLineHeight(lineHeightString);
   }, [lineHeight, selectedLineHeight, setSelectedLineHeight]);
 
   const refLineHeight = React.useRef();
