@@ -66,7 +66,6 @@ export default function ToolbarLineHeight(ToolbarLineHeightProps) {
                   id="lineHeight"
                   name="lineHeight"
                   inputRef={refLineHeight}
-                  defaultValue={lineHeight}
                   value={lineHeightValue}
                   onChange={handleEnsureNumber}
                 />

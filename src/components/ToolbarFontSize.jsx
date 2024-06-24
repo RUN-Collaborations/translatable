@@ -65,7 +65,6 @@ export default function ToolbarFontSize(ToolbarFontSizeProps) {
                   id="fontSize"
                   name="fontSize"
                   inputRef={refFontSize}
-                  defaultValue={fontSize}
                   value={fontSizeValue}
                   onChange={handleEnsureNumber}
                 />
