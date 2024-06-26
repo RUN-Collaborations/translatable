@@ -50,8 +50,6 @@ export default function SimpleEditorPrint() {
   const [textAlign, setTextAlign] = React.useState("left");
   useEffect(() => {
     if (textDir === "rtl") setTextAlign("right");
-    // console.log(dir);
-    // console.log(textAlign);
   }, [textDir, textAlign])
 
   const renderStyles = (textDir === 'ltr' ? renderStylesLtr : renderStylesRtl);
@@ -85,7 +83,6 @@ export default function SimpleEditorPrint() {
   const previewProps = {
     openPrintDrawer: isOpen && ready,
     onClosePrintDrawer: () => {
-      // console.log('closePrintDrawer')
       setIsOpen(false)
     },
     onRenderContent: () => renderedData,
