@@ -3,7 +3,6 @@ import { Grid, Box, InputLabel, MenuItem, FormControl, Select } from "@mui/mater
 import { keywordsList } from "./FontKeywords";
 import {
     useDetectFonts,
-    useAssumeGraphite,
     fontList as fontsArray,
     graphiteEnabledFontList as graphiteEnabledFontsArray,
   } from "font-detect-rhl";
@@ -28,6 +27,7 @@ export default function ToolbarSelectFont(ToolbarSelectFontProps) {
     customFont,
     setCustomFont,
     setTypeIsOn,
+    assumeGraphite,
   } = ToolbarSelectFontProps;
 
   useEffect(() => {
@@ -62,14 +62,11 @@ export default function ToolbarSelectFont(ToolbarSelectFontProps) {
     setQuoteOrNot(event.target.value === "monospace" ? "" : "'");
   };
 
-  // Should Graphite-enabled fonts be detected / utilized?
-  const isGraphiteAssumed = useAssumeGraphite({});
-
-  // Utilizing Graphite-enabled web fonts
-  // In order to not conflict with locally installed fonts, embedded fonts use a css id that differ from the font name.
-  // Then name is used for display of the font name, while the id is used to implement it.
+  /** Graphite-enabled web fonts - avoid conflict with locally installed fonts, use a a different css id from the font name!
+      The name is used for display of the font name, while the id is used to apply it.
+  */
   const GraphiteEnabledWebFonts =
-  isGraphiteAssumed &&
+  assumeGraphite &&
   GraphiteEnabledWebFontsArray.map((font, index) => (
     <MenuItem key={index} value={font.name} dense>
       <FontMenuItem font={font} />
@@ -78,11 +75,11 @@ export default function ToolbarSelectFont(ToolbarSelectFontProps) {
 
   // Detecting locally installed Graphite-enabled fonts (name = id):
   const detectedGEFonts = useDetectFonts({
-    fonts: isGraphiteAssumed ? graphiteEnabledFontsArray : [],
+    fonts: assumeGraphite ? graphiteEnabledFontsArray : [],
   });
 
   const detectedGEFontsComponents =
-    isGraphiteAssumed &&
+    assumeGraphite &&
     detectedGEFonts.map((font, index) => (
       <MenuItem key={index} value={font.name} dense>
         <FontMenuItem font={font} />
@@ -116,11 +113,11 @@ export default function ToolbarSelectFont(ToolbarSelectFontProps) {
           >
               <MenuItem key={1} value="monospace">default</MenuItem>
               <MenuItem key={2} value="type font">type font</MenuItem>
-              {isGraphiteAssumed && <hr />}
+              {assumeGraphite && <hr />}
               <b>
-              {isGraphiteAssumed && "Graphite-Enabled Fonts:"}
+              {assumeGraphite && "Graphite-Enabled Fonts:"}
               {detectedGEFontsComponents.length === 0 &&
-                  isGraphiteAssumed &&
+                  assumeGraphite &&
                   noneDetectedGEMsg}
               </b>
               {GraphiteEnabledWebFonts}
@@ -157,4 +154,6 @@ ToolbarSelectFont.propTypes = {
   setTypeIsOn: PropTypes.func.isRequired,
   /** Is Disabled? */
   isDisabled: PropTypes.bool,
+  /** Assume Graphite? */
+  assumeGraphite: PropTypes.bool,
 };

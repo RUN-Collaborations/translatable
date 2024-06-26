@@ -73,18 +73,22 @@ export default function SimpleEditor(simpleEditorProps) {
     if (epiteleteHtml) loadUsfm()
   }, [epiteleteHtml, usfmText])
 
-  const isFirefox = useAssumeGraphite({});
+  const isFirefoxDetected = useAssumeGraphite({});
+  const [assumeGraphite, setAssumeGraphite] = useState(isFirefoxDetected);
   const dir = useDetectDir({ text: usfmText, isMarkup: true, ratioThreshold: .51 });
   const [textAlign, setTextAlign] = useState("left");
-  const [sortRedo, setSortRedo] = useState(isFirefox ? -1 : 0);
+  const [sortRedo, setSortRedo] = useState(isFirefoxDetected ? -1 : 0);
   const [sortOthers, setSortOthers] = useState(0);
+
+  const handleGraphiteClick = () => { setAssumeGraphite(!assumeGraphite); };
+
   useEffect(() => {
     if (dir === "rtl") {
       setTextAlign("right");
-      setSortRedo(isFirefox ? -1 : 0);
-      setSortOthers(isFirefox ? 1 : -1);
+      setSortRedo(isFirefoxDetected ? -1 : 0);
+      setSortOthers(isFirefoxDetected ? 1 : -1);
     }
-  }, [dir, isFirefox])
+  }, [dir, isFirefoxDetected])
 
   const [isDisabled, setIsDisabled] = useState(false);
   const [isOpen,setIsOpen] = useState(true);
@@ -171,6 +175,8 @@ export default function SimpleEditor(simpleEditorProps) {
     setSelectedFontSize,
     selectedLineHeight,
     setSelectedLineHeight,
+    assumeGraphite,
+    handleGraphiteClick,
     isDisabled,
     handlePreventClick,
     hehk,
