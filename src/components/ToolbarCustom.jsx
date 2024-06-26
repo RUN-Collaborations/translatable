@@ -1,12 +1,12 @@
 import { useState, useMemo } from "react";
 import { Grid, Typography, Box, Fab, Toolbar, Stack } from "@mui/material";
 import SourceIcon from '@mui/icons-material/Source';
-import { useAssumeGraphite } from "font-detect-rhl";
 import CustomFont from "./FontCustom";
 import ToolbarSelectFont from "./ToolbarSelectFont";
 import ToolbarLineHeight from "./ToolbarLineHeight";
 import ToolbarFontSize from "./ToolbarFontSize";
 import ToolbarFontFeatures from "./ToolbarFontFeatures";
+import ToolbarGraphite from "./ToolbarGraphite";
 import sx from "./ToolbarCustom.styles";
 import PropTypes from 'prop-types';
 
@@ -24,6 +24,8 @@ export default function ToolbarCustom(toolbarCustomProps) {
       setSelectedFontSize,
       selectedLineHeight,
       setSelectedLineHeight,
+      assumeGraphite,
+      handleGraphiteClick,
       isDisabled,
       handlePreventClick,
       hehk,
@@ -48,8 +50,6 @@ export default function ToolbarCustom(toolbarCustomProps) {
       setAgca,
   } = toolbarCustomProps;
 
-  // Are Graphite-enabled fonts applicable?
-  const isGraphiteAssumed = useAssumeGraphite({});
   const isAwamiNastaliq = (selectedFontName.substring(0,14) === 'Awami Nastaliq' ? true : false);
   
   const [customFont, setCustomFont] = useState("");
@@ -82,6 +82,11 @@ export default function ToolbarCustom(toolbarCustomProps) {
   const usfmEditorButton = (<button style={{height: "4.645em", margin: "0.1em auto"}} id="usfm" onClick={handlePreventClick}>USFM<br />Editor</button>);
   const usfmEditorButtonOff = (<button className="disabled" style={{height: "4.645em", padding: "0.25em 0.5em", margin: "0.1em auto"}}>USFM<br />Editor</button>);  
 
+  const toolbarGraphiteProps = {
+    assumeGraphite,
+    handleGraphiteClick,
+  }
+  
   const toolbarSelectFontProps = {
     selectedFontName,
     setSelectedFontName,
@@ -91,6 +96,7 @@ export default function ToolbarCustom(toolbarCustomProps) {
     customFont,
     setCustomFont,
     setTypeIsOn,
+    assumeGraphite,
   };
   const toolbarFontSizeProps = { selectedFontSize, setSelectedFontSize };
   const toolbarLineHeightProps = { selectedLineHeight, setSelectedLineHeight };
@@ -142,8 +148,9 @@ export default function ToolbarCustom(toolbarCustomProps) {
               <Box sx={{ minWidth: 275 }}>
                 <Grid container spacing={1} style={{ margin: ".55em 0 0 1.25em" }}>
                   <Stack direction="row" spacing={0.75}>
+                    <ToolbarGraphite {...toolbarGraphiteProps} />
                     {isDisabled ? printPreviewButtonOff : (<div>{printPreviewButton}</div>)}
-                    {isGraphiteAssumed && isAwamiNastaliq && <ToolbarFontFeatures {...toolbarFontFeaturesProps} />}
+                    {assumeGraphite && isAwamiNastaliq && <ToolbarFontFeatures {...toolbarFontFeaturesProps} />}
                     {isDisabled ? usfmEditorButtonOff : (<div>{usfmEditorButton}</div>)}
                   </Stack>
                 </Grid>
@@ -191,6 +198,10 @@ ToolbarCustom.propTypes = {
   selectedLineHeight: PropTypes.string,
   /** Set Selected Line Height */
   setSelectedLineHeight: PropTypes.func.isRequired,
+  /** Assume Graphite? */
+  assumeGraphite: PropTypes.bool,
+  /** Handle Graphite Click */
+  handleGraphiteClick: PropTypes.func,
   /** Is Disabled? */
   isDisabled: PropTypes.bool,
   /** Handle Prevent Click */
