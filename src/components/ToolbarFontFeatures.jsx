@@ -303,7 +303,7 @@ export default function ToolbarFontFeatures(ToolbarFontFeaturesProps) {
                 </RadioGroup>
               </Grid>
             </Grid>
-            <FormLabel id="lam-with-v-label"><div style={labelDivStyle}><mark style={labelMarkStyle}>Punctuation</mark></div></FormLabel>
+            <FormLabel id="punctuation-label"><div style={labelDivStyle}><mark style={labelMarkStyle}>Punctuation</mark></div></FormLabel>
               <RadioGroup
                 aria-labelledby="punctuation-label"
                 defaultValue="0"
