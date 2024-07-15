@@ -189,8 +189,8 @@ export default function ToolbarFontFeatures(ToolbarFontFeaturesProps) {
               onChange={handleHehkChange}
               sx={radioColor}
             >
-              <Tooltip title="Yes" placement="right" PopperProps={tooltipPosition} arrow={true}><FormControlLabel value="1" style={{ fontFeatureSettings: '"hehk" 1' }} control={<Radio />} label={<Typography sx={label}>ب<font color={fontColor}>ہ</font>ب ب<font color={fontColor}>ۂ</font>ب</Typography>} /></Tooltip>
-              <Tooltip title="No" placement="right" PopperProps={tooltipPosition} arrow={true}><FormControlLabel value="0" style={{ fontFeatureSettings: '"hehk" 0' }} control={<Radio />} label={<Typography sx={label}>ب<font color={fontColor}>ہ</font>ب ب<font color={fontColor}>ۂ</font>ب</Typography>} /></Tooltip>
+              <Tooltip title="Yes" placement="right" PopperProps={tooltipPosition} arrow={true}><FormControlLabel value="1" style={{ fontFeatureSettings: '"hehk" 1', MozFontFeatureSettings: '"hehk" 1', WebkitFontFeatureSettings: '"hehk" 1' }} control={<Radio />} label={<Typography sx={label}>ب<font color={fontColor}>ہ</font>ب ب<font color={fontColor}>ۂ</font>ب</Typography>} /></Tooltip>
+              <Tooltip title="No" placement="right" PopperProps={tooltipPosition} arrow={true}><FormControlLabel value="0" style={{ fontFeatureSettings: '"hehk" 0', MozFontFeatureSettings: '"hehk" 0', WebkitFontFeatureSettings: '"hehk" 0' }} control={<Radio />} label={<Typography sx={label}>ب<font color={fontColor}>ہ</font>ب ب<font color={fontColor}>ۂ</font>ب</Typography>} /></Tooltip>
             </RadioGroup>
             <FormLabel id="initial-heh-doachashmee-label"><div style={labelDivStyle}><br /><mark style={labelMarkStyle}>Initial heh doachashmee</mark></div></FormLabel>
             <RadioGroup
@@ -201,8 +201,8 @@ export default function ToolbarFontFeatures(ToolbarFontFeaturesProps) {
               onChange={handleHedoChange}
               sx={radioColor}
             >
-              <Tooltip title="Heart shaped" placement="right" PopperProps={tooltipPosition} arrow={true}><FormControlLabel value="0" style={{ fontFeatureSettings: '"hedo" 0' }} control={<Radio />} label={<Typography sx={label}><font color={fontColor}>ھ</font>ا</Typography>} /></Tooltip>
-              <Tooltip title="Round" placement="right" PopperProps={tooltipPosition} arrow={true}><FormControlLabel value="1" style={{ fontFeatureSettings: '"hedo" 1' }} control={<Radio />} label={<Typography sx={label}><font color={fontColor}>ھ</font>ا</Typography>} /></Tooltip>
+              <Tooltip title="Heart shaped" placement="right" PopperProps={tooltipPosition} arrow={true}><FormControlLabel value="0" style={{ fontFeatureSettings: '"hedo" 0', MozFontFeatureSettings: '"hedo" 0', WebkitFontFeatureSettings: '"hedo" 0' }} control={<Radio />} label={<Typography sx={label}><font color={fontColor}>ھ</font>ا</Typography>} /></Tooltip>
+              <Tooltip title="Round" placement="right" PopperProps={tooltipPosition} arrow={true}><FormControlLabel value="1" style={{ fontFeatureSettings: '"hedo" 1', MozFontFeatureSettings: '"hedo" 1', WebkitFontFeatureSettings: '"hedo" 1' }} control={<Radio />} label={<Typography sx={label}><font color={fontColor}>ھ</font>ا</Typography>} /></Tooltip>
             </RadioGroup>
             <FormLabel id="lam-with-v-label"><div style={labelDivStyle}><br /><mark style={labelMarkStyle}>Lam with V</mark></div></FormLabel>
             <RadioGroup
@@ -213,8 +213,8 @@ export default function ToolbarFontFeatures(ToolbarFontFeaturesProps) {
               onChange={handleLamvChange}
               sx={radioColor}
             >
-              <Tooltip title="V over stem" placement="right" PopperProps={tooltipPosition} arrow={true}><FormControlLabel value="0" style={{ fontFeatureSettings: '"lamv" 0' }} control={<Radio />} label={<Typography sx={label}><font color={fontColor}>ڵ</font> ڵبڵب<font color={fontColor}>ڵ</font></Typography>} /></Tooltip>
-              <Tooltip title="V over bowl" placement="right" PopperProps={tooltipPosition} arrow={true}><FormControlLabel value="1" style={{ fontFeatureSettings: '"lamv" 1' }} control={<Radio />} label={<Typography sx={label}><font color={fontColor}>ڵ</font> ڵبڵب<font color={fontColor}>ڵ</font></Typography>} /></Tooltip>
+              <Tooltip title="V over stem" placement="right" PopperProps={tooltipPosition} arrow={true}><FormControlLabel value="0" style={{ fontFeatureSettings: '"lamv" 0', MozFontFeatureSettings: '"lamv" 0', WebkitFontFeatureSettings: '"lamv" 0' }} control={<Radio />} label={<Typography sx={label}><font color={fontColor}>ڵ</font> ڵبڵب<font color={fontColor}>ڵ</font></Typography>} /></Tooltip>
+              <Tooltip title="V over bowl" placement="right" PopperProps={tooltipPosition} arrow={true}><FormControlLabel value="1" style={{ fontFeatureSettings: '"lamv" 1', MozFontFeatureSettings: '"lamv" 1', WebkitFontFeatureSettings: '"lamv" 1' }} control={<Radio />} label={<Typography sx={label}><font color={fontColor}>ڵ</font> ڵبڵب<font color={fontColor}>ڵ</font></Typography>} /></Tooltip>
             </RadioGroup>
             <FormLabel id="full-stop-label"><div style={labelDivStyle}><br /><mark style={labelMarkStyle}>Full Stop</mark></div></FormLabel>
             <RadioGroup
@@ -225,8 +225,8 @@ export default function ToolbarFontFeatures(ToolbarFontFeaturesProps) {
               onChange={handleCv85Change}
               sx={radioColor}
             >
-               <Tooltip title="Dash" placement="right" PopperProps={tooltipPosition} arrow={true}><FormControlLabel value="0" style={{ fontFeatureSettings: '"cv85" 0' }} control={<Radio />} label={<Typography sx={label}>ججج<font color={fontColor}>۔</font></Typography>} /></Tooltip>
-               <Tooltip title="Dot" placement="right" PopperProps={tooltipPosition} arrow={true}><FormControlLabel value="1" style={{ fontFeatureSettings: '"cv85" 1' }} control={<Radio />} label={<Typography sx={label}>ججج<font color={fontColor}>۔</font></Typography>} /></Tooltip>
+               <Tooltip title="Dash" placement="right" PopperProps={tooltipPosition} arrow={true}><FormControlLabel value="0" style={{ fontFeatureSettings: '"cv85" 0', MozFontFeatureSettings: '"cv85" 0', WebkitFontFeatureSettings: '"cv85" 0' }} control={<Radio />} label={<Typography sx={label}>ججج<font color={fontColor}>۔</font></Typography>} /></Tooltip>
+               <Tooltip title="Dot" placement="right" PopperProps={tooltipPosition} arrow={true}><FormControlLabel value="1" style={{ fontFeatureSettings: '"cv85" 1', MozFontFeatureSettings: '"cv85" 1', WebkitFontFeatureSettings: '"cv85" 1' }} control={<Radio />} label={<Typography sx={label}>ججج<font color={fontColor}>۔</font></Typography>} /></Tooltip>
             </RadioGroup>
             <FormLabel id="sukun-jazm-label"><div style={labelDivStyle}><br /><mark style={labelMarkStyle}>Sukun/jazm</mark></div></FormLabel>
             <RadioGroup
@@ -237,8 +237,8 @@ export default function ToolbarFontFeatures(ToolbarFontFeaturesProps) {
               onChange={handleCv78Change}
               sx={radioColor}
             >
-              <Tooltip title="Open down" placement="right" PopperProps={tooltipPosition} arrow={true}><FormControlLabel value="1" style={{ fontFeatureSettings: '"cv78" 1' }} control={<Radio />} label={<Typography sx={label}>بْ ◌ْ</Typography>} /></Tooltip>
-              <Tooltip title="Open left" placement="right" PopperProps={tooltipPosition} arrow={true}><FormControlLabel value="2" style={{ fontFeatureSettings: '"cv78" 2' }} control={<Radio />} label={<Typography sx={label}>بْ ◌ْ</Typography>} /></Tooltip>
+              <Tooltip title="Open down" placement="right" PopperProps={tooltipPosition} arrow={true}><FormControlLabel value="1" style={{ fontFeatureSettings: '"cv78" 1', MozFontFeatureSettings: '"cv78" 1', WebkitFontFeatureSettings: '"cv78" 1' }} control={<Radio />} label={<Typography sx={label}>بْ ◌ْ</Typography>} /></Tooltip>
+              <Tooltip title="Open left" placement="right" PopperProps={tooltipPosition} arrow={true}><FormControlLabel value="2" style={{ fontFeatureSettings: '"cv78" 2', MozFontFeatureSettings: '"cv78" 2', WebkitFontFeatureSettings: '"cv78" 2' }} control={<Radio />} label={<Typography sx={label}>بْ ◌ْ</Typography>} /></Tooltip>
             </RadioGroup>
           </Grid>
           <Grid item xs={9}>
@@ -253,8 +253,8 @@ export default function ToolbarFontFeatures(ToolbarFontFeaturesProps) {
                   onChange={handleHamzChange}
                   sx={radioColor}
                 >
-                  <Tooltip title="Urdu style" placement="right" PopperProps={tooltipPosition} arrow={true}><FormControlLabel value="0" style={{ fontFeatureSettings: '"hamz" 0' }} control={<Radio />} label={<Typography sx={label}>ء أ ؤ بؤ إ ۂ بۂ ۓ بۓ ٵ ݬ بݬ ځ بځ بځب بٔ بٕ</Typography>} /></Tooltip>
-                  <Tooltip title="Arabic style" placement="right" PopperProps={tooltipPosition} arrow={true}><FormControlLabel value="1" style={{ fontFeatureSettings: '"hamz" 1' }} control={<Radio />} label={<Typography sx={label}>ء أ ؤ بؤ إ ۂ بۂ ۓ بۓ ٵ ݬ بݬ ځ بځ بځب بٔ بٕ</Typography>} /></Tooltip>
+                  <Tooltip title="Urdu style" placement="right" PopperProps={tooltipPosition} arrow={true}><FormControlLabel value="0" style={{ fontFeatureSettings: '"hamz" 0', MozFontFeatureSettings: '"hamz" 0', WebkitFontFeatureSettings: '"hamz" 0' }} control={<Radio />} label={<Typography sx={label}>ء أ ؤ بؤ إ ۂ بۂ ۓ بۓ ٵ ݬ بݬ ځ بځ بځب بٔ بٕ</Typography>} /></Tooltip>
+                  <Tooltip title="Arabic style" placement="right" PopperProps={tooltipPosition} arrow={true}><FormControlLabel value="1" style={{ fontFeatureSettings: '"hamz" 1', MozFontFeatureSettings: '"hamz" 1', WebkitFontFeatureSettings: '"hamz" 1' }} control={<Radio />} label={<Typography sx={label}>ء أ ؤ بؤ إ ۂ بۂ ۓ بۓ ٵ ݬ بݬ ځ بځ بځب بٔ بٕ</Typography>} /></Tooltip>
                 </RadioGroup>
                 <FormLabel id="word-spacing-label"><div style={labelDivStyle}><br /><mark style={labelMarkStyle}>Word spacing</mark></div></FormLabel>
                 <RadioGroup
@@ -265,11 +265,11 @@ export default function ToolbarFontFeatures(ToolbarFontFeaturesProps) {
                   onChange={handleWdspChange}
                   sx={radioColor}
                 >
-                  <Tooltip title="Extra tight" placement="right" PopperProps={tooltipPosition} arrow={true}><FormControlLabel value="0" style={{ fontFeatureSettings: '"wdsp" 0' }} control={<Radio />} label={<Typography sx={label}>کیوں جو انسانی حقوق کنوں</Typography>} /></Tooltip>
-                  <Tooltip title="Tight" placement="right" PopperProps={tooltipPosition} arrow={true}><FormControlLabel value="1" style={{ fontFeatureSettings: '"wdsp" 1' }} control={<Radio />} label={<Typography sx={label}>کیوں جو انسانی حقوق کنوں</Typography>} /></Tooltip>
-                  <Tooltip title="Medium" placement="right" PopperProps={tooltipPosition} arrow={true}><FormControlLabel value="2" style={{ fontFeatureSettings: '"wdsp" 2' }} control={<Radio />} label={<Typography sx={label}>کیوں جو انسانی حقوق کنوں</Typography>} /></Tooltip>
-                  <Tooltip title="Wide" placement="right" PopperProps={tooltipPosition} arrow={true}><FormControlLabel value="3" style={{ fontFeatureSettings: '"wdsp" 3' }} control={<Radio />} label={<Typography sx={label}>کیوں جو انسانی حقوق کنوں</Typography>} /></Tooltip>
-                  <Tooltip title="Extra wide" placement="right" PopperProps={tooltipPosition} arrow={true}><FormControlLabel value="4" style={{ fontFeatureSettings: '"wdsp" 4' }} control={<Radio />} label={<Typography sx={label}>کیوں جو انسانی حقوق کنوں</Typography>} /></Tooltip>
+                  <Tooltip title="Extra tight" placement="right" PopperProps={tooltipPosition} arrow={true}><FormControlLabel value="0" style={{ fontFeatureSettings: '"wdsp" 0', MozFontFeatureSettings: '"wdsp" 0', WebkitFontFeatureSettings: '"wdsp" 0' }} control={<Radio />} label={<Typography sx={label}>کیوں جو انسانی حقوق کنوں</Typography>} /></Tooltip>
+                  <Tooltip title="Tight" placement="right" PopperProps={tooltipPosition} arrow={true}><FormControlLabel value="1" style={{ fontFeatureSettings: '"wdsp" 1', MozFontFeatureSettings: '"wdsp" 1', WebkitFontFeatureSettings: '"wdsp" 1' }} control={<Radio />} label={<Typography sx={label}>کیوں جو انسانی حقوق کنوں</Typography>} /></Tooltip>
+                  <Tooltip title="Medium" placement="right" PopperProps={tooltipPosition} arrow={true}><FormControlLabel value="2" style={{ fontFeatureSettings: '"wdsp" 2', MozFontFeatureSettings: '"wdsp" 2', WebkitFontFeatureSettings: '"wdsp" 2' }} control={<Radio />} label={<Typography sx={label}>کیوں جو انسانی حقوق کنوں</Typography>} /></Tooltip>
+                  <Tooltip title="Wide" placement="right" PopperProps={tooltipPosition} arrow={true}><FormControlLabel value="3" style={{ fontFeatureSettings: '"wdsp" 3', MozFontFeatureSettings: '"wdsp" 3', WebkitFontFeatureSettings: '"wdsp" 3' }} control={<Radio />} label={<Typography sx={label}>کیوں جو انسانی حقوق کنوں</Typography>} /></Tooltip>
+                  <Tooltip title="Extra wide" placement="right" PopperProps={tooltipPosition} arrow={true}><FormControlLabel value="4" style={{ fontFeatureSettings: '"wdsp" 4', MozFontFeatureSettings: '"wdsp" 4', WebkitFontFeatureSettings: '"wdsp" 4' }} control={<Radio />} label={<Typography sx={label}>کیوں جو انسانی حقوق کنوں</Typography>} /></Tooltip>
                 </RadioGroup>
               </Grid>
               <Grid item xs={5}>
@@ -282,10 +282,10 @@ export default function ToolbarFontFeatures(ToolbarFontFeaturesProps) {
                   onChange={handleAgcaChange}
                   sx={radioColor}
                 >
-                  <Tooltip title="On" placement="right" PopperProps={tooltipPosition} arrow={true}><FormControlLabel value="3" style={{ fontFeatureSettings: '"agca" 3' }} control={<Radio />} label={<Typography sx={label}><font color={fontColor}>پی</font>ٹی <font color={fontColor}>اؔبِی</font>ج<font color={fontColor}>یل</font> تح<font color={fontColor}>ر</font>ِ<font color={fontColor}>ی</font>ج</Typography>} /></Tooltip>
-                  {/** <Tooltip title="Not implemented" placement="right" PopperProps={tooltipPosition} arrow={true}><FormControlLabel value="2" style={{ fontFeatureSettings: '"agca" 2' }} control={<Radio />} label={<Typography sx={label}>پیٹی اؔبِیجیل تحرِیج</Typography>} /></Tooltip> */}
-                  <Tooltip title="Kern-only" placement="right" PopperProps={tooltipPosition} arrow={true}><FormControlLabel value="1" style={{ fontFeatureSettings: '"agca" 1' }} control={<Radio />} label={<Typography sx={label}><font color={fontColor}>پی</font>ٹی <font color={fontColor}>اؔبِی</font>ج<font color={fontColor}>یل</font> تح<font color={fontColor}>ر</font>ِ<font color={fontColor}>ی</font>ج</Typography>} /></Tooltip>
-                  <Tooltip title="Off" placement="right" PopperProps={tooltipPosition} arrow={true}><FormControlLabel value="0" style={{ fontFeatureSettings: '"agca" 0' }} control={<Radio />} label={<Typography sx={label}><font color={fontColor}>پی</font>ٹی <font color={fontColor}>اؔبِی</font>ج<font color={fontColor}>یل</font> تح<font color={fontColor}>ر</font>ِ<font color={fontColor}>ی</font>ج</Typography>} /></Tooltip>
+                  <Tooltip title="On" placement="right" PopperProps={tooltipPosition} arrow={true}><FormControlLabel value="3" style={{ fontFeatureSettings: '"agca" 3', MozFontFeatureSettings: '"agca" 3', WebkitFontFeatureSettings: '"agca" 3' }} control={<Radio />} label={<Typography sx={label}><font color={fontColor}>پی</font>ٹی <font color={fontColor}>اؔبِی</font>ج<font color={fontColor}>یل</font> تح<font color={fontColor}>ر</font>ِ<font color={fontColor}>ی</font>ج</Typography>} /></Tooltip>
+                  {/** <Tooltip title="Not implemented" placement="right" PopperProps={tooltipPosition} arrow={true}><FormControlLabel value="2" style={{ fontFeatureSettings: '"agca" 2', MozFontFeatureSettings: '"agca" 2', WebkitFontFeatureSettings: '"agca" 2' }} control={<Radio />} label={<Typography sx={label}>پیٹی اؔبِیجیل تحرِیج</Typography>} /></Tooltip> */}
+                  <Tooltip title="Kern-only" placement="right" PopperProps={tooltipPosition} arrow={true}><FormControlLabel value="1" style={{ fontFeatureSettings: '"agca" 1', MozFontFeatureSettings: '"agca" 1', WebkitFontFeatureSettings: '"agca" 1' }} control={<Radio />} label={<Typography sx={label}><font color={fontColor}>پی</font>ٹی <font color={fontColor}>اؔبِی</font>ج<font color={fontColor}>یل</font> تح<font color={fontColor}>ر</font>ِ<font color={fontColor}>ی</font>ج</Typography>} /></Tooltip>
+                  <Tooltip title="Off" placement="right" PopperProps={tooltipPosition} arrow={true}><FormControlLabel value="0" style={{ fontFeatureSettings: '"agca" 0', MozFontFeatureSettings: '"agca" 0', WebkitFontFeatureSettings: '"agca" 0' }} control={<Radio />} label={<Typography sx={label}><font color={fontColor}>پی</font>ٹی <font color={fontColor}>اؔبِی</font>ج<font color={fontColor}>یل</font> تح<font color={fontColor}>ر</font>ِ<font color={fontColor}>ی</font>ج</Typography>} /></Tooltip>
                 </RadioGroup>
                 <FormLabel id="short-forms-label"><div style={labelDivStyle}><br /><mark style={labelMarkStyle}>Short forms</mark><br />&nbsp;</div></FormLabel>
                 <RadioGroup
@@ -296,14 +296,14 @@ export default function ToolbarFontFeatures(ToolbarFontFeaturesProps) {
                   onChange={handleShrtChange}
                   sx={radioColor}
                 >
-                  <Tooltip title="All" placement="right" PopperProps={tooltipPosition} arrow={true}><FormControlLabel value="3" style={{ fontFeatureSettings: '"shrt" 3' }} control={<Radio />} label={<Typography sx={label}>دی<font color={fontColor}>ک</font>ھت<font color={fontColor}>ی</font> <font color={fontColor}>ک</font>نسلٹنٹ<font color={fontColor}>س</font> ن<font color={fontColor}>گ</font>ھنے ت<font color={fontColor}>ک</font>می<font color={fontColor}>ل</font></Typography>} /></Tooltip>
-                  <Tooltip title="Finals" placement="right" PopperProps={tooltipPosition} arrow={true}><FormControlLabel value="2" style={{ fontFeatureSettings: '"shrt" 2' }} control={<Radio />} label={<Typography sx={label}>دیکھت<font color={fontColor}>ی</font> کنسلٹنٹ<font color={fontColor}>س</font> نگھنے تکمی<font color={fontColor}>ل</font></Typography>} /></Tooltip>
-                  <Tooltip title="Kafs and gafs" placement="right" PopperProps={tooltipPosition} arrow={true}><FormControlLabel value="1" style={{ fontFeatureSettings: '"shrt" 1' }} control={<Radio />} label={<Typography sx={label}>دی<font color={fontColor}>ک</font>ھتی <font color={fontColor}>ک</font>نسلٹنٹس ن<font color={fontColor}>گ</font>ھنے ت<font color={fontColor}>ک</font>میل</Typography>} /></Tooltip>
-                  <Tooltip title="None" placement="right" PopperProps={tooltipPosition} arrow={true}><FormControlLabel value="0" style={{ fontFeatureSettings: '"shrt" 0' }} control={<Radio />} label={<Typography sx={label}>دیکھتی کنسلٹنٹس نگھنے تکمیل</Typography>} /></Tooltip>
+                  <Tooltip title="All" placement="right" PopperProps={tooltipPosition} arrow={true}><FormControlLabel value="3" style={{ fontFeatureSettings: '"shrt" 3', MozFontFeatureSettings: '"shrt" 3', WebkitFontFeatureSettings: '"shrt" 3' }} control={<Radio />} label={<Typography sx={label}>دی<font color={fontColor}>ک</font>ھت<font color={fontColor}>ی</font> <font color={fontColor}>ک</font>نسلٹنٹ<font color={fontColor}>س</font> ن<font color={fontColor}>گ</font>ھنے ت<font color={fontColor}>ک</font>می<font color={fontColor}>ل</font></Typography>} /></Tooltip>
+                  <Tooltip title="Finals" placement="right" PopperProps={tooltipPosition} arrow={true}><FormControlLabel value="2" style={{ fontFeatureSettings: '"shrt" 2', MozFontFeatureSettings: '"shrt" 2', WebkitFontFeatureSettings: '"shrt" 2' }} control={<Radio />} label={<Typography sx={label}>دیکھت<font color={fontColor}>ی</font> کنسلٹنٹ<font color={fontColor}>س</font> نگھنے تکمی<font color={fontColor}>ل</font></Typography>} /></Tooltip>
+                  <Tooltip title="Kafs and gafs" placement="right" PopperProps={tooltipPosition} arrow={true}><FormControlLabel value="1" style={{ fontFeatureSettings: '"shrt" 1', MozFontFeatureSettings: '"shrt" 1', WebkitFontFeatureSettings: '"shrt" 1' }} control={<Radio />} label={<Typography sx={label}>دی<font color={fontColor}>ک</font>ھتی <font color={fontColor}>ک</font>نسلٹنٹس ن<font color={fontColor}>گ</font>ھنے ت<font color={fontColor}>ک</font>میل</Typography>} /></Tooltip>
+                  <Tooltip title="None" placement="right" PopperProps={tooltipPosition} arrow={true}><FormControlLabel value="0" style={{ fontFeatureSettings: '"shrt" 0', MozFontFeatureSettings: '"shrt" 0', WebkitFontFeatureSettings: '"shrt" 0' }} control={<Radio />} label={<Typography sx={label}>دیکھتی کنسلٹنٹس نگھنے تکمیل</Typography>} /></Tooltip>
                 </RadioGroup>
               </Grid>
             </Grid>
-            <FormLabel id="lam-with-v-label"><div style={labelDivStyle}><mark style={labelMarkStyle}>Punctuation</mark></div></FormLabel>
+            <FormLabel id="punctuation-label"><div style={labelDivStyle}><mark style={labelMarkStyle}>Punctuation</mark></div></FormLabel>
               <RadioGroup
                 aria-labelledby="punctuation-label"
                 defaultValue="0"
@@ -312,9 +312,9 @@ export default function ToolbarFontFeatures(ToolbarFontFeaturesProps) {
                 onChange={handlePuncChange}
                 sx={radioColor}
               >
-                <Tooltip title="Arabic (RTL) and Latin (LTR) styles" placement="right" PopperProps={tooltipPosition} arrow={true}><FormControlLabel value="0" style={{ fontFeatureSettings: '"punc" 0' }} control={<Radio />} label={<Typography sx={label}>! &quot; &apos; ( ) * + - / : [  ] { } « ­ ± · » ×   ‐ ‑ ‒ – — ― ‘ ’ ‚ “ ” „ • ‥ … ‧ ‰ ‹ › − ∙ </Typography>} /></Tooltip>
-                <Tooltip title="Arabic-style" placement="right" PopperProps={tooltipPosition} arrow={true}><FormControlLabel value="1" style={{ fontFeatureSettings: '"punc" 1' }} control={<Radio />} label={<Typography sx={label}>! &quot; &apos; ( ) * + - / : [  ] { } « ­ ± · » ×   ‐ ‑ ‒ – — ― ‘ ’ ‚ “ ” „ • ‥ … ‧ ‰ ‹ › − ∙ </Typography>} /></Tooltip>
-                <Tooltip title="Latin-style" placement="right" PopperProps={tooltipPosition} arrow={true}><FormControlLabel value="2" style={{ fontFeatureSettings: '"punc" 2' }} control={<Radio />} label={<Typography sx={label}>! &quot; &apos; ( ) * + - / : [  ] { } « ­ ± · » ×   ‐ ‑ ‒ – — ― ‘ ’ ‚ “ ” „ • ‥ … ‧ ‰ ‹ › − ∙ </Typography>} /></Tooltip>
+                <Tooltip title="Arabic (RTL) and Latin (LTR) styles" placement="right" PopperProps={tooltipPosition} arrow={true}><FormControlLabel value="0" style={{ fontFeatureSettings: '"punc" 0', MozFontFeatureSettings: '"punc" 0', WebkitFontFeatureSettings: '"punc" 0' }} control={<Radio />} label={<Typography sx={label}>! &quot; &apos; ( ) * + - / : [  ] { } « ­ ± · » ×   ‐ ‑ ‒ – — ― ‘ ’ ‚ “ ” „ • ‥ … ‧ ‰ ‹ › − ∙ </Typography>} /></Tooltip>
+                <Tooltip title="Arabic-style" placement="right" PopperProps={tooltipPosition} arrow={true}><FormControlLabel value="1" style={{ fontFeatureSettings: '"punc" 1', MozFontFeatureSettings: '"punc" 1', WebkitFontFeatureSettings: '"punc" 1' }} control={<Radio />} label={<Typography sx={label}>! &quot; &apos; ( ) * + - / : [  ] { } « ­ ± · » ×   ‐ ‑ ‒ – — ― ‘ ’ ‚ “ ” „ • ‥ … ‧ ‰ ‹ › − ∙ </Typography>} /></Tooltip>
+                <Tooltip title="Latin-style" placement="right" PopperProps={tooltipPosition} arrow={true}><FormControlLabel value="2" style={{ fontFeatureSettings: '"punc" 2', MozFontFeatureSettings: '"punc" 2', WebkitFontFeatureSettings: '"punc" 2' }} control={<Radio />} label={<Typography sx={label}>! &quot; &apos; ( ) * + - / : [  ] { } « ­ ± · » ×   ‐ ‑ ‒ – — ― ‘ ’ ‚ “ ” „ • ‥ … ‧ ‰ ‹ › − ∙ </Typography>} /></Tooltip>
               </RadioGroup>
           </Grid>
         </Grid>
