@@ -41,6 +41,13 @@ export default function SimpleEditor(simpleEditorProps) {
     returnedWdsp,
     returnedShrt,
     returnedAgca,
+    defaultOptions:{
+      editable,
+      sectionable,
+      blockable,
+      preview,
+      stripAlignment: stripAlignment,
+    },
     ...props
    } = simpleEditorProps;
 
@@ -60,6 +67,7 @@ export default function SimpleEditor(simpleEditorProps) {
   const [usfmTextSaved, setUsfmTextSaved] = useState(usfmText);
 
   const onSave = (bookId, usfmText) => {
+    console.log(stripAlignment);
     SaveFile(filePath,usfmText);
     setUsfmTextSaved(usfmText);
   };
@@ -91,7 +99,7 @@ export default function SimpleEditor(simpleEditorProps) {
   }, [dir, isFirefoxDetected])
 
   const [isDisabled, setIsDisabled] = useState(false);
-  const [isOpen,setIsOpen] = useState(true);
+  const [isOpen, setIsOpen] = useState(true);
   const bookId = 'XYZ';
 
   const navigate = useNavigate();
@@ -241,6 +249,13 @@ export default function SimpleEditor(simpleEditorProps) {
     verbose,
     handleOpen: {handleOpen},
     handleCancel: {handleCancel},
+    defaultOptions:{
+      editable,
+      sectionable,
+      blockable,
+      preview,
+      stripAlignment: stripAlignment,
+    },
     ...props,
   }
 

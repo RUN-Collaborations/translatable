@@ -1636,24 +1636,24 @@
     "@nodelib/fs.scandir" "2.1.5"
     fastq "^1.6.0"
 
-"@oce-editor-tools/base@^0.1.31-beta.9":
-  version "0.1.31-beta.9"
-  resolved "https://registry.yarnpkg.com/@oce-editor-tools/base/-/base-0.1.31-beta.9.tgz#cefeaf9bf172b650e87213e9fd54df69e935d29c"
-  integrity sha512-V0cSsqF+rYeJTCA/GWEL/ARdT93r1Ws8TMxwiBB0Bs2GXmSMAhcK1dBQnmpwgTwrygYKr8od2tnEkzX1XUGnlg==
+"@oce-editor-tools/base@^0.1.31-beta.15":
+  version "0.1.31-beta.15"
+  resolved "https://registry.yarnpkg.com/@oce-editor-tools/base/-/base-0.1.31-beta.15.tgz#44fa1a4ac328e86d2a672b0c89ff6215f1814f63"
+  integrity sha512-EADn1r87aF6lkCdNH7tr2TAznHxPVMS5W0cuxbMvF/2mqo38ZVW48B+2IcAF1ihd4RYmE9tOIWfbAv+CGMlVfg==
   dependencies:
     "@findr/react" "^1.0.0-beta.3"
     "@findr/text" "^1.0.7-beta.4"
     "@xelah/type-perf-html" "^1.0.3"
 
-"@oce-editor-tools/mui-core@^v0.1.31-beta.9":
-  version "0.1.31-beta.9"
-  resolved "https://registry.yarnpkg.com/@oce-editor-tools/mui-core/-/mui-core-0.1.31-beta.9.tgz#669b144ccffac9e71d87846c6964d35901f1ccf1"
-  integrity sha512-RvVeCHFf6d4UcDgzr+ydKdWeeZRz2Xmu1CbOmGHm6y7zwfSjvwyAYmPPnJlAq4kfRQMUV0m1YfjIc/dqNvvOOg==
+"@oce-editor-tools/mui-core@^v0.1.31-beta.15":
+  version "0.1.31-beta.15"
+  resolved "https://registry.yarnpkg.com/@oce-editor-tools/mui-core/-/mui-core-0.1.31-beta.15.tgz#4e93f24795986da6ded7c33f52eb7b65265b09c8"
+  integrity sha512-7kifccQ4ZC/LnoR1ebW3xS/NsrTz4aYGiqFoeBJ5yqRr7E78+sM/7H5mBxbm1eJJQSKiaVXMSzA9ONs0otAerg==
   dependencies:
     "@findr/mui" "^1.0.1-beta.19"
     "@findr/react" "^1.0.0-beta.3"
     "@gwdevs/extensible-rcl" "^1.0.1"
-    "@oce-editor-tools/base" "^0.1.31-beta.9"
+    "@oce-editor-tools/base" "^0.1.31-beta.15"
     "@xelah/type-perf-html" "^1.0.3"
     epitelete-html "0.2.21-beta.2"
     font-detect-rhl "^1.0.9"

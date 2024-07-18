@@ -28,7 +28,6 @@ function App() {
     reference,
     onReference: setReference,
     onFile,
-    // align,
   };
 
   return (

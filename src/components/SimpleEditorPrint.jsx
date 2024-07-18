@@ -54,7 +54,7 @@ export default function SimpleEditorPrint() {
 
   const renderStyles = (textDir === 'ltr' ? renderStylesLtr : renderStylesRtl);
   
-  const [isOpen,setIsOpen] = useState(false)
+  const [isOpen, setIsOpen] = useState(false)
 
   const handleClick = () => setIsOpen(!isOpen)
 
