@@ -55,13 +55,13 @@ export default function AppLayout() {
   const [usfmFileLoaded, setUsfmFileLoaded] = useState(returnedFileLoaded)
   const [filename, setFilename] = useState(returnedFilePath);
   const [dialogType, setDialogType] = useState("");
-  const [openDialog, setOpenDialog] = useState(false);
   const [wEmptyNum, setWEmptyNum] = useState(0);
   const [wEmptyLemmaOnlyNum, setWEmptyLemmaOnlyNum] = useState(0);
   const [stripAlignment, setStripAlignment] = useState(false);
 
-  const handleOpen = async (
-  ) => {
+  const [Dialog, decision] = WordAttributesAndAlignment(dialogType, filename, wEmptyNum, wEmptyLemmaOnlyNum,);
+  
+  const handleOpen = async () => {
     setLoading(true)
     const file = await fileOpen([
       {
@@ -95,43 +95,50 @@ export default function AppLayout() {
         const wEmptyCount = wEmptyMatches?.length || 0;
         const wEmptyLemmaOnlyMatches = contents.match(wEmptyLemmaOnlyCheckRegex);
         const wEmptyLemmaOnlyCount = wEmptyLemmaOnlyMatches?.length || 0;    
-        console.log (xalnStartCount);
-        console.log (xalnEndCount);
-        console.log (wStartCount);
-        console.log (wEndCount);
-        console.log (wEmptyCount);
-        console.log (wEmptyLemmaOnlyCount);
-        setStripAlignment(false); // Set the starting state in case it was set differently by a previous Open or Save.
         setDialogType("");
         if (xalnStartCount !== 0 || xalnEndCount !== 0) {
-          console.log ("has alignment");
-          setDialogType("alignment"); // Set to stripAlignment=false onOpen without prompt; consider prompting on save.
+          // console.log ("has alignment");
+          setDialogType("alignment");
+          setStripAlignment(false);// Consider prompting on save for an option to change to true.
         } else if ((xalnStartCount === 0 && xalnEndCount === 0) && (wStartCount !== 0 || wEndCount !== 0) && (wEmptyCount + wEmptyLemmaOnlyCount === wStartCount) && (wEmptyCount + wEmptyLemmaOnlyCount === wEndCount)) {
-          console.log ("Identified " + wEmptyCount + " empty word attribute wrappers (|\\w*), " + wEmptyLemmaOnlyCount + " empty lemma attributes (|lemma=\"\" \\w*), and 0 meaningful word attribute wrappers (\\w), with no alignment");
+          // console.log ("Identified " + wEmptyCount + " empty word attribute wrappers (|\\w*), " + wEmptyLemmaOnlyCount + " empty lemma attributes (|lemma=\"\" \\w*), and 0 meaningful word attribute wrappers (\\w), with no alignment");
           setDialogType("empty word attributes"); // Prompt onOpen for user to determine stripAlignment boolean.
           setWEmptyNum(wEmptyCount);
           setWEmptyLemmaOnlyNum(wEmptyLemmaOnlyCount);
-          setOpenDialog(true); // The user will determine whether to strip word attributes.
+          // setOpenDialog(true); // The user will determine whether to strip word attributes.
         } else if ((xalnStartCount === 0 && xalnEndCount === 0) && (wStartCount !== 0 || wEndCount !== 0)) {
-          console.log ("has word attribute wrappers with no alignment"); // consider differentiating what it contains
-          setDialogType("word attributes"); // Set to stripAlignment=false onOpen without prompt; consider prompting on save.
+          // console.log ("has word attribute wrappers with no alignment");
+          setDialogType("word attributes");
+          setStripAlignment(false); // Consider prompting on save for an option to change to true.
         } else {
-          console.log ("no word attribute wrappers or alignment");
+          // console.log ("no word attribute wrappers or alignment");
           setDialogType("none"); // Set to stripAlignment=true onOpen without prompt; consider prompting on save.
           setStripAlignment(true); // This is to prevent the Editor component from adding empty word attributes wrappers or empty lemmas on save.
         }
-        setUsfmText(contents)
-        setUsfmFileLoaded(true)
-        setLoading(false)
-        setFilename(filePath)
-        // console.log(filename);
+        setFilename(filePath);
+        const answer = await decision();
+          if (answer) {
+            // console.log("Yes");
+            setStripAlignment(true);
+            proceed(contents, filePath);
+          } else {
+            // console.log("No");
+            setStripAlignment(false);
+            proceed(contents, filePath);
+          }
       } else {
         console.log("invalid file extension")
       }
     } else {
       console.log("invalid file")
     }
-  }
+  };
+  
+  const proceed = (contents) => {
+    setUsfmText(contents)
+    setUsfmFileLoaded(true)
+    setLoading(false)
+  };
 
   const handleCancel = () => {}
 
@@ -165,12 +172,10 @@ export default function AppLayout() {
       sectionable: false,
       blockable: false,
       preview: true,
-      // stripAlignment: true,
       stripAlignment: stripAlignment,
     },
   }
  
-  console.log ("stripAlignment = " + stripAlignment)
   const [windowSize, setWindowSize] = useState(window.innerWidth - scrollbarWidth()-2);
   // eslint-disable-next-line no-unused-vars
   const handleWindowResize = useCallback(event => {
@@ -188,16 +193,6 @@ export default function AppLayout() {
     <div style={{ width: windowSize }}>
       { usfmFileLoaded && <SimpleEditor {...simpleEditorProps } />}
     </div>
-
-  const wordAttributesAndAlignmentProps = {
-    dialogType,
-    openDialog,
-    setOpenDialog,
-    wEmptyNum,
-    wEmptyLemmaOnlyNum,
-    filename,
-    setStripAlignment,
-  }
 
   return (
       <Box sx={{ flexGrow: 1 }}>
@@ -242,7 +237,7 @@ export default function AppLayout() {
               </Box>
             )}
         </Grid>
-        <WordAttributesAndAlignment {...wordAttributesAndAlignmentProps} />
+        <Dialog />
       </Box>
   )
 }

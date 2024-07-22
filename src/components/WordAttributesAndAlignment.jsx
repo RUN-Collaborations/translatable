@@ -1,60 +1,94 @@
 import { useState, useEffect } from 'react';
-import Button from '@mui/material/Button';
-import Dialog from '@mui/material/Dialog';
-import DialogActions from '@mui/material/DialogActions';
-import DialogContent from '@mui/material/DialogContent';
-import DialogContentText from '@mui/material/DialogContentText';
-import DialogTitle from '@mui/material/DialogTitle';
+import {
+  Button, Dialog, DialogActions,
+  DialogContent, DialogContentText, DialogTitle
+} from '@mui/material';
 import PropTypes from 'prop-types';
 
-export default function WordAttributesAndAlignment(wordAttributesAndAlignmentProps) {
+export default function WordAttributesAndAlignment(dialogType, filename, wEmptyNum, wEmptyLemmaOnlyNum) {
+  /*
+  The await promise setup currently cannot handle Javascript default parameters!!
   const {
-    dialogType,
-    openDialog,
-    setOpenDialog,
-    wEmptyNum,
-    wEmptyLemmaOnlyNum,
-    filename,
-    setStripAlignment,
-  } = wordAttributesAndAlignmentProps
+    messageTitle,
+    message,
+    question,
+  } = wordAttributesAndAlignmentProps;
+  */
 
+  const [promise, setPromise] = useState(null);
   const [messageTitle, setMessageTitle] = useState("");
-  const [message, setMessage] = useState("");
+  const [messageUl, setMessageUl] = useState("");
+  const [messageLi1, setMessageLi1] = useState("");
+  const [messageLi2, setMessageLi2] = useState("");
   const [question, setQuestion] = useState("");
-  
+
+  // wEmptyNum = Number of Empty Word Attribute Wrappers -- |\w*
+  // wEmptyLemmaOnlyNum = Number of Empty Lemmas as the Only Word Attribute -- |lemma="" \w*
   const wordForWrappers = (wEmptyNum === 1 ? "wrapper" : "wrappers");
   const wordForAttributes = (wEmptyLemmaOnlyNum === 1 ? "attribute" : "attributes"); 
-  const emptyW = (wEmptyNum > 0 ? " " + wEmptyNum + " empty word attribute " + wordForWrappers + " -- |\\w*" : "");
-  const lineBr = (wEmptyNum > 0 && wEmptyLemmaOnlyNum > 0 ? "\n" : "")
-  const emptyLemmas = (wEmptyLemmaOnlyNum > 0 ? " " + wEmptyLemmaOnlyNum + " empty lemma " + wordForAttributes + " -- |lemma=\"\" \\w*" : "");
+  const emptyW = (wEmptyNum > 0 ? wEmptyNum + " empty word attribute " + wordForWrappers : "");
+  const emptyLemmas = (wEmptyLemmaOnlyNum > 0 ? wEmptyLemmaOnlyNum + " empty lemma " + wordForAttributes : "");
   
   useEffect(() => {
     if (dialogType === "empty word attributes") {
       setMessageTitle("Word Attributes -- \\w");
-      setMessage(filename + " includes:\n" + emptyW + lineBr + emptyLemmas);
+      setMessageUl("'" + filename + "':");
+      setMessageLi1("has " + emptyW);
+      setMessageLi2("has " + emptyLemmas);
       setQuestion("Remove all word attribute markers on save?");
+    } else {
+    if (dialogType === "none") {
+      promise?.resolve(true);
+    } else {
+      promise?.resolve(false);
     }
-  }, [dialogType, filename, emptyLemmas, emptyW, lineBr]);
+      handleClose();
+    }
+  }, [dialogType, emptyLemmas, emptyW, filename, promise]);
+
+
+  const message = (
+    <div>
+      <b>{messageUl}</b>
+      <ul style={{marginTop: 0}}>
+        {emptyW !== "" ? <li>{messageLi1} -- <font color="#124116">|\w*</font></li> : ""}
+        {emptyLemmas !== "" ? <li>{messageLi2} -- <font color="#124116">|lemma=&quot;&quot; \w*</font></li> : ""}
+      </ul>
+        <b>{question}</b>
+    </div>
+  )
+
+  const decided = () => 
+    new Promise((resolve) => {
+      setPromise({ resolve });
+  });
+
+  const handleClose = () => {
+    setPromise(null);
+  };
 
   const handleYes = (event, reason) => {
     if(reason !== ' k' && reason !== 'escapeKeyDown') {
-      setOpenDialog(false);
-      setStripAlignment(true);
+      promise?.resolve(true);
+      handleClose();
     }
   };
 
-  // handleNo is the same as what would otherwise be handleClose
   const handleNo = (event, reason) => {
     if(reason !== ' k' && reason !== 'escapeKeyDown') {
-      setOpenDialog(false);
+      promise?.resolve(false);
+      handleClose();
     }
   };
 
-  return (
-    <>
+  const showDialog = (
+    dialogType != "empty word attributes"
+    ?
+      ""
+    :
       <Dialog
-        open={openDialog}
-        onClose={handleNo}
+        open={promise !== null}
+        // fullWidth
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
         sx={{ whiteSpace: "pre-wrap" }}
@@ -64,36 +98,35 @@ export default function WordAttributesAndAlignment(wordAttributesAndAlignmentPro
         </DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
-            <small>{message}</small>
-            <br />
-            <br />
-            <b>{question}</b>
+            {message}
           </DialogContentText>
         </DialogContent>
         <DialogActions>
           <Button onClick={handleNo}>No</Button>
-          <Button variant="outlined" onClick={handleYes} autoFocus>
+          <Button
+            onClick={handleYes}
+            autoFocus // not working
+            variant="outlined" // use this for now as an alternative to autoFocus
+          >
             Yes
           </Button>
         </DialogActions>
       </Dialog>
-    </>
   );
+
+  const DecisionDialog = () => (
+    showDialog
+  );
+  return [DecisionDialog, decided];
 }
 
 WordAttributesAndAlignment.propTypes = {
   /** Dialog Type */
   dialogType: PropTypes.string.isRequired,
-  /** Open Dialog? */
-  openDialog: PropTypes.bool.isRequired,
-  /** Set Open Dialog Boolean */
-  setOpenDialog: PropTypes.func.isRequired,
+  /** File Name */
+  filename: PropTypes.string.isRequired,
   /** Number of Empty Word Attribute Wrappers -- |\w* */
   wEmptyNum: PropTypes.number.isRequired,
   /** Number of Empty Lemmas as the Only Word Attribute -- |lemma="" \w* */
   wEmptyLemmaOnlyNum: PropTypes.number.isRequired,
-  /** File Name */
-  filename: PropTypes.string.isRequired,
-  /** Set Strip Alignment Boolean */
-  setStripAlignment: PropTypes.func.isRequired,
 };

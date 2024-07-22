@@ -67,9 +67,10 @@ export default function SimpleEditor(simpleEditorProps) {
   const [usfmTextSaved, setUsfmTextSaved] = useState(usfmText);
 
   const onSave = (bookId, usfmText) => {
-    console.log(stripAlignment);
+    console.log("stripAlignment before save: " + stripAlignment);
     SaveFile(filePath,usfmText);
     setUsfmTextSaved(usfmText);
+    console.log("stripAlignment after save: " + stripAlignment);
   };
 
   useEffect(() => {
