@@ -22,13 +22,12 @@ function App() {
     setFiles(myfiles);
   };
 
-  const editorProps = {
+  const usfmFileEditorProps = {
     sectionIndex,
     onSectionIndex: setSectionIndex,
     reference,
     onReference: setReference,
     onFile,
-    // align,
   };
 
   return (
@@ -36,7 +35,7 @@ function App() {
       <Routes>
         <Route path="/" element={ <AppLayout/> } />
         <Route path="print" element={ <SimpleEditorPrint /> } />
-        <Route path="usfm" element={ <UsfmFileEditor {...editorProps} file={files.target} type="target" /> } />
+        <Route path="usfm" element={ <UsfmFileEditor {...usfmFileEditorProps} file={files.target} type="target" /> } />
       </Routes>
     </div>
   );

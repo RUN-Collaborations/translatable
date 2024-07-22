@@ -37,7 +37,6 @@
 ## Limitations
 - Currently only a single usfm file can be opened at a time.
 - USFM tags support is limited to tags supported by [oce-editor-tools-mui-core](https://oce-editor-tools-mui-core.netlify.app/) and the javascript libraries that it utilizes.
-- Alignment marker placeholders will be added in the USFM around words that do not yet have them. This will not be what you want unless you are working with USFM that is already aligned to the original language using this method of alignment.
 - Print does not prevent subheadings from being the last line of a column or page.
 - General font-size and line-height percent settings are applied, with the relative difference between elements of different sizes fixed, and not currently customizable (e.g., titles, headings, chapter numbers, verse numbers, etc.).
 - Arabic numerals (0123456789) are the only numbering system offered for chapters and verses.
