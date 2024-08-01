@@ -48,14 +48,13 @@ export default function WordAttributesAndAlignment(dialogType, filename, wEmptyN
 
 
   const message = (
-    <div>
-      <b>{messageUl}</b>
-      <ul style={{marginTop: 0}}>
-        {emptyW !== "" ? <li>{messageLi1} -- <font color="#124116">|\w*</font></li> : ""}
-        {emptyLemmas !== "" ? <li>{messageLi2} -- <font color="#124116">|lemma=&quot;&quot; \w*</font></li> : ""}
-      </ul>
-        <b>{question}</b>
-    </div>
+    <>
+        <b>{messageUl}</b><br />
+          {emptyW !== "" ? <span>{'  '}{'\u25CF'} {messageLi1} -- <font color="#124116">|\w*</font><br /></span> : ""}
+          {emptyLemmas !== "" ? <span>{'  '}{'\u25CF'} {messageLi2} -- <font color="#124116">|lemma=&quot;&quot; \w*</font><br /></span> : ""}
+          <br />
+          <b>{question}</b>
+    </>
   )
 
   const decided = () => 
