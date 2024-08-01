@@ -7,7 +7,6 @@ import {
     graphiteEnabledFontList as graphiteEnabledFontsArray,
   } from "font-detect-rhl";
 import FontMenuItem from "./FontMenuItem";
-// import FontMenuEmbeddedItem from "./FontMenuEmbeddedItem";
 import sx from "./ToolbarCustom.styles";
 import PropTypes from 'prop-types';
 
@@ -53,18 +52,12 @@ export default function ToolbarSelectFont(ToolbarSelectFontProps) {
 
   const handleChange = (event) => {
     setCustomFont("");
-    if (event.target.value == "Awami-Nastaliq-3-200") {
-      setSelectedFontName("Awami Nastaliq 3.200");
-    } else {
     setSelectedFontName(event.target.value);
-    }
     setSelectedFontId(event.target.value);
     setQuoteOrNot(event.target.value === "monospace" ? "" : "'");
   };
 
-  /** Graphite-enabled web fonts - avoid conflict with locally installed fonts, use a a different css id from the font name!
-      The name is used for display of the font name, while the id is used to apply it.
-  */
+  // Graphite-enabled web fonts - avoid conflict with locally installed fonts; using a a different css id from the font name!
   const GraphiteEnabledWebFonts =
   assumeGraphite &&
   GraphiteEnabledWebFontsArray.map((font, index) => (
@@ -115,12 +108,15 @@ export default function ToolbarSelectFont(ToolbarSelectFontProps) {
               <MenuItem key={2} value="type font">type font</MenuItem>
               {assumeGraphite && <hr />}
               <b>
-              {assumeGraphite && "Graphite-Enabled Fonts:"}
-              {detectedGEFontsComponents.length === 0 &&
-                  assumeGraphite &&
-                  noneDetectedGEMsg}
+                {assumeGraphite && "Graphite-Enabled Fonts:"}                
               </b>
               {GraphiteEnabledWebFonts}
+              <b>
+                {assumeGraphite && "Local Graphite-Enabled Fonts:"}
+                {detectedGEFontsComponents.length === 0 &&
+                    assumeGraphite &&
+                    noneDetectedGEMsg}
+              </b>
               {detectedGEFontsComponents}
               <hr />
               <b>

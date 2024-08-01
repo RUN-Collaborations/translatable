@@ -17,16 +17,9 @@ export default function AppLayout() {
     "selectedFontId": "monospace",
     "selectedFontSize": "125%",
     "selectedLineHeight": "2.5",
-    "hehk": 1,
-    "hedo": 0,
-    "lamv": 0,
-    "cv85": 0,
-    "cv78": 1,
-    "hamz": 0,
-    "punc": 0,
-    "wdsp": 2, 
-    "shrt": 3,
-    "agca": 3,
+    "fontSettingsCss": "",
+    "fontSettings": null,
+    "featureFont" : "",
     "filePath": "",
   };
   const returnedUsfmText = editorData.usfmText;
@@ -36,20 +29,11 @@ export default function AppLayout() {
   const returnedSelectedFontId = editorData.selectedFontId;
   const returnedFontSize = editorData.selectedFontSize;
   const returnedLineHeight = editorData.selectedLineHeight;
-  const returnedHehk = editorData.hehk;
-  const returnedHedo = editorData.hedo;
-  const returnedLamv = editorData.lamv;
-  const returnedCv85 = editorData.cv85;
-  const returnedCv78 = editorData.cv78;
-  const returnedHamz = editorData.hamz;
-  const returnedPunc = editorData.punc;
-  const returnedWdsp = editorData.wdsp;
-  const returnedShrt = editorData.shrt;
-  const returnedAgca = editorData.agca;
-
-
+  const returnedFontSettingsCss = editorData.fontSettingsCss;
+  const returnedFontSettings = editorData.fontSettings;
+  const returnedFeatureFont = editorData.featureFont;
   const returnedFilePath = location.state ? editorData.filePath : 'temp.usfm';
-  
+
   const [usfmText, setUsfmText] = useState(returnedUsfmText)
   const [loading, setLoading] = useState(false)
   const [usfmFileLoaded, setUsfmFileLoaded] = useState(returnedFileLoaded)
@@ -97,21 +81,21 @@ export default function AppLayout() {
         const wEmptyLemmaOnlyCount = wEmptyLemmaOnlyMatches?.length || 0;    
         setDialogType("");
         if (xalnStartCount !== 0 || xalnEndCount !== 0) {
-          // console.log ("has alignment");
+          // console.log("has alignment");
           setDialogType("alignment");
           setStripAlignment(false);// Consider prompting on save for an option to change to true.
         } else if ((xalnStartCount === 0 && xalnEndCount === 0) && (wStartCount !== 0 || wEndCount !== 0) && (wEmptyCount + wEmptyLemmaOnlyCount === wStartCount) && (wEmptyCount + wEmptyLemmaOnlyCount === wEndCount)) {
-          // console.log ("Identified " + wEmptyCount + " empty word attribute wrappers (|\\w*), " + wEmptyLemmaOnlyCount + " empty lemma attributes (|lemma=\"\" \\w*), and 0 meaningful word attribute wrappers (\\w), with no alignment");
+          // console.log("Identified " + wEmptyCount + " empty word attribute wrappers (|\\w*), " + wEmptyLemmaOnlyCount + " empty lemma attributes (|lemma=\"\" \\w*), and 0 meaningful word attribute wrappers (\\w), with no alignment");
           setDialogType("empty word attributes"); // Prompt onOpen for user to determine stripAlignment boolean.
           setWEmptyNum(wEmptyCount);
           setWEmptyLemmaOnlyNum(wEmptyLemmaOnlyCount);
           // setOpenDialog(true); // The user will determine whether to strip word attributes.
         } else if ((xalnStartCount === 0 && xalnEndCount === 0) && (wStartCount !== 0 || wEndCount !== 0)) {
-          // console.log ("has word attribute wrappers with no alignment");
+          // console.log("has word attribute wrappers with no alignment");
           setDialogType("word attributes");
           setStripAlignment(false); // Consider prompting on save for an option to change to true.
         } else {
-          // console.log ("no word attribute wrappers or alignment");
+          // console.log("no word attribute wrappers or alignment");
           setDialogType("none"); // Set to stripAlignment=true onOpen without prompt; consider prompting on save.
           setStripAlignment(true); // This is to prevent the Editor component from adding empty word attributes wrappers or empty lemmas on save.
         }
@@ -157,16 +141,9 @@ export default function AppLayout() {
     returnedSelectedFontId,
     returnedFontSize,
     returnedLineHeight,
-    returnedHehk,
-    returnedHedo,
-    returnedLamv,
-    returnedCv85,
-    returnedCv78,
-    returnedHamz,
-    returnedPunc,
-    returnedWdsp,
-    returnedShrt,
-    returnedAgca,
+    returnedFontSettingsCss,
+    returnedFontSettings,
+    returnedFeatureFont,
     defaultOptions:{
       editable: false,
       sectionable: false,

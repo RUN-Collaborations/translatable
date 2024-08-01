@@ -18,6 +18,7 @@ import { useDetectDir } from "font-detect-rhl";
 
     const location = useLocation();
     const usfmDataIn = location.state.printData;
+
     const usfmTextIn = usfmDataIn.usfmText;
     const quoteOrNot = usfmDataIn.quoteOrNot;
     const selectedFontName = usfmDataIn.selectedFontName;
@@ -25,20 +26,11 @@ import { useDetectDir } from "font-detect-rhl";
     const displayFont =  quoteOrNot + selectedFontId + quoteOrNot;
     const displayFontSize = usfmDataIn.selectedFontSize;
     const displayLineHeight = usfmDataIn.selectedLineHeight;
+    const fontSettingsCss = usfmDataIn.fontSettingsCss;
+    const fontSettings = usfmDataIn.fontSettings;
+    const featureFont = usfmDataIn.featureFont;
     const filePath = usfmDataIn.filePath;
-    const hehk = usfmDataIn.hehk;
-    const hedo = usfmDataIn.hedo;
-    const lamv = usfmDataIn.lamv;
-    const cv85 = usfmDataIn.cv85;
-    const cv78 = usfmDataIn.cv78;
-    const hamz = usfmDataIn.hamz;
-    const punc = usfmDataIn.punc;
-    const wdsp = usfmDataIn.wdsp;
-    const shrt = usfmDataIn.shrt;
-    const agca = usfmDataIn.agca;
-  
-    const displayFontFeatureSettings = '"hehk"' + hehk + ', "hedo"' + hedo + ', "lamv"' + lamv + ', "cv85"' + cv85 + ', "cv78"' + cv78 + ', "hamz"' + hamz + ', "punc"' + punc + ', "wdsp"' + wdsp + ', "shrt"' + shrt + ', "agca"' + agca;
-  
+
     const [usfmText, setUsfmText] = useState(usfmTextIn);
     
     const usfmDataOut = {
@@ -48,16 +40,9 @@ import { useDetectDir } from "font-detect-rhl";
       selectedFontId: selectedFontId,
       selectedFontSize: displayFontSize,
       selectedLineHeight: displayLineHeight,
-      hehk: hehk,
-      hedo: hedo,
-      lamv: lamv,
-      cv85: cv85,
-      cv78: cv78,
-      hamz: hamz,
-      punc: punc,
-      wdsp: wdsp,
-      shrt: shrt,
-      agca: agca,
+      fontSettingsCss: fontSettingsCss,
+      featureFont: featureFont,
+      fontSettings: fontSettings,
       filePath,
     }
   
@@ -137,9 +122,9 @@ import { useDetectDir } from "font-detect-rhl";
         fontFamily: displayFont,
         fontSize: displayFontSize,
         lineHeight: displayLineHeight,
-        fontFeatureSettings: displayFontFeatureSettings,
-        MozFontFeatureSettings: displayFontFeatureSettings,
-        WebkitFontFeatureSettings: displayFontFeatureSettings,
+        fontFeatureSettings: fontSettingsCss,
+        MozFontFeatureSettings: fontSettingsCss,
+        WebkitFontFeatureSettings: fontSettingsCss,
         textAlign: textAlign
         }}>
         {buttons}
