@@ -9,17 +9,30 @@
 ## Font Selection
 - Font selection is offered in good faith. Please *honor* the end-user license agreements (EULA) of your fonts and ensure the font you have in mind is appropriate *for the way you plan to use it*. Here is [How To Tell If A Font Is Copyrighted & Why You Should Always Check](https://logosbynick.com/how-to-tell-if-a-font-is-copyrighted/).
 - While you can type in the name of any [unicode](https://en.wikipedia.org/wiki/Unicode) font that you have locally, a dropdown list of many detected locally installed fonts will also be presented.
-- Some embedded graphite-enabled fonts are also provided, which fall under [SIL's Open Font License](https://openfontlicense.org/how-to-use-ofl-fonts/).
+- Some embedded graphite-enabled fonts are also included, which fall under [SIL's Open Font License](https://openfontlicense.org/how-to-use-ofl-fonts/), or you can use your own locally installed versions.
 - Line Height can be specified.
 - Font Size can be specified in general, with the presented ratio of differently sized elements maintained.
 
 ## [Graphite](https://graphite.sil.org/)-enabled Smart Font Features
-- When the Awami Nastaliq font is in use in Firefox, user customization of smart font features is enabled. This allows selection of collision avoidance, spacing, and other adjustable font-specific display features.
-- Selections for other Graphite-enable fonts are planned.
+When Firefox is in use, user customization of smart font features is enabled with each option displayed for user selection. This allows user preferences for collision avoidance, spacing, regional character variation, and other adjustable font-specific display features when any of the following fonts are selected:
+- Abyssinica SIL - many of the languages of Ethiopia and Eritrea
+- Alkalami - the Kano region of Nigeria and in Niger
+- Andika - comprehensive support for thousands of languages around the world written with  Latin and Cyrillic letters and their many variants, including a wide range of additional characters and symbols useful for linguistic and literacy work.
+- Annapurna SIL - writing systems that use the Devanagari script
+- Awami Nastaliq - wide variety of languages of South Asia, including but not limited to Urdu
+- Charis SIL - wide range of languages that use the Latin and Cyrillic scripts.
+- Doulos SIL - wide range of languages that use the Latin and Cyrillic scripts
+- Gentium Plus - Latin, Cyrillic, and Greek scripts
+- Harmattan - languages using the Arabic script in West Africa.
+- Kanchenjunga - Kirat Rai script of South Asia.
+- Lateef - Sindhi and other languages of southern Asia
+- Ruwudu - style of writing is used by the Manga people in Niger, West Africa
+- Scheherazade New - a “simplified” rendering of Arabic script, using basic - connecting glyphs but not including a wide variety of additional ligatures or contextual alternates (only the required lam-alef ligatures)
+- Padauk - writing systems that use the Myanmar script.
+- Tagmukay - a Shifinagh script font with support for the Tawallammat Tamajaq language
 
 ## Character Variant Settings
-- Character variant settings for Awami Nastaliq are available in Firefox
-- Additional character variant settings for both [Graphite](https://graphite.sil.org/) and [Open Type](https://developer.mozilla.org/en-US/docs/Web/CSS/font-feature-settings) are planned.
+- Additional character variant settings for [Open Type](https://developer.mozilla.org/en-US/docs/Web/CSS/font-feature-settings) fonts are also planned.
 
 ## Print
 - With selected font, features, size and line height.
@@ -41,7 +54,6 @@
 - General font-size and line-height percent settings are applied, with the relative difference between elements of different sizes fixed, and not currently customizable (e.g., titles, headings, chapter numbers, verse numbers, etc.).
 - Arabic numerals (0123456789) are the only numbering system offered for chapters and verses.
 - *Backup your work before using the USFM Editor and consider it to be experimental.*
-- Wrapper markers are currently added by default around each word for alignment purposes. This will be included in any saved usfm files, though may not be what you want.
 - Please overlook the "Edit a Graft" pop-ups over element like subheadings in read-only mode. These are only editable in edit mode.  A "graft" is a technical term here for element that is not a part of chapter and verse content.
 - Not fully functional on iPadOS, iOS, or Android
 
