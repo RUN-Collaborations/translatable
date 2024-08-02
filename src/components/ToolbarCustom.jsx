@@ -1,4 +1,4 @@
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import { Grid, Typography, Box, Fab, Toolbar, Stack } from "@mui/material";
 import SourceIcon from '@mui/icons-material/Source';
 import CustomFont from "./FontCustom";
@@ -8,6 +8,8 @@ import ToolbarFontSize from "./ToolbarFontSize";
 import ToolbarFontFeatures from "./ToolbarFontFeatures";
 import ToolbarGraphite from "./ToolbarGraphite";
 import sx from "./ToolbarCustom.styles";
+import graphiteEnabledFeatures from '../fontFeatures/graphiteEnabledFeatures.json';
+import GraphiteEnabledWebFontsArray from '../embeddedWebFonts/GraphiteEnabledWebFonts.json';
 import PropTypes from 'prop-types';
 
 const keywordFont = 'sans-serif';
@@ -28,30 +30,35 @@ export default function ToolbarCustom(toolbarCustomProps) {
       handleGraphiteClick,
       isDisabled,
       handlePreventClick,
-      hehk,
-      setHehk,
-      hedo,
-      setHedo,
-      lamv,
-      setLamv,
-      cv85,
-      setCv85,
-      cv78,
-      setCv78,
-      hamz,
-      setHamz,
-      punc,
-      setPunc,
-      wdsp,
-      setWdsp,
-      shrt,
-      setShrt,
-      agca,
-      setAgca,
+      fontSettings,
+      setFontSettings,
+      returnedFontSettings,
+      featureFont,
+      setFeatureFont,
+      returnedFeatureFont,
   } = toolbarCustomProps;
 
-  const isAwamiNastaliq = (selectedFontName.substring(0,14) === 'Awami Nastaliq' ? true : false);
-  
+  const [graphiteEnabledSettings, setGraphiteEnabledSettings] = useState(false);
+
+  // embedded font naming convention used is "name version", so we remove "version" with pop to get just the name
+  const embeddedFontIfListed = useMemo(() => 
+    assumeGraphite &&
+    GraphiteEnabledWebFontsArray.filter((name) => name?.name === selectedFontName).map(
+      ({ name }) => name.replace(" " + name.split(" ").pop(), ""))
+    .toString(),[assumeGraphite, selectedFontName]);
+
+  const fontIfListed = useMemo(() => graphiteEnabledFeatures.filter((name) => name?.name === selectedFontName).map(({ name }) => name),[selectedFontName]);
+
+  useEffect(() => {
+    if (fontIfListed.length > 0 || embeddedFontIfListed.length >0) {
+      setGraphiteEnabledSettings(true);
+    } else {
+      setGraphiteEnabledSettings(false);
+      setFontSettings(null);
+      setFeatureFont("");
+    }
+  }, [embeddedFontIfListed.length, fontIfListed.length, setFeatureFont, setFontSettings]);
+
   const [customFont, setCustomFont] = useState("");
   const [typeIsOn, setTypeIsOn] = useState(false);
 
@@ -101,26 +108,16 @@ export default function ToolbarCustom(toolbarCustomProps) {
   const toolbarFontSizeProps = { selectedFontSize, setSelectedFontSize };
   const toolbarLineHeightProps = { selectedLineHeight, setSelectedLineHeight };
   const toolbarFontFeaturesProps = {
-    hehk,
-    setHehk,
-    hedo,
-    setHedo,
-    lamv,
-    setLamv,
-    cv85,
-    setCv85,
-    cv78,
-    setCv78,
-    hamz,
-    setHamz,
-    punc,
-    setPunc,
-    wdsp,
-    setWdsp,
-    shrt,
-    setShrt,
-    agca,
-    setAgca,
+    fontSettings,
+    setFontSettings,
+    returnedFontSettings,
+    featureFont,
+    setFeatureFont,
+    returnedFeatureFont,
+    selectedFontName,
+    embeddedFontIfListed,
+    selectedFontSize,
+    selectedLineHeight,
   };
 
   return (
@@ -150,7 +147,7 @@ export default function ToolbarCustom(toolbarCustomProps) {
                   <Stack direction="row" spacing={0.75}>
                     <ToolbarGraphite {...toolbarGraphiteProps} />
                     {isDisabled ? printPreviewButtonOff : (<div>{printPreviewButton}</div>)}
-                    {assumeGraphite && isAwamiNastaliq && <ToolbarFontFeatures {...toolbarFontFeaturesProps} />}
+                    {assumeGraphite && graphiteEnabledSettings && <ToolbarFontFeatures {...toolbarFontFeaturesProps} />}
                     {isDisabled ? usfmEditorButtonOff : (<div>{usfmEditorButton}</div>)}
                   </Stack>
                 </Grid>
@@ -206,44 +203,16 @@ ToolbarCustom.propTypes = {
   isDisabled: PropTypes.bool,
   /** Handle Prevent Click */
   handlePreventClick: PropTypes.func.isRequired,
-  /** Hook on medial heh-goal */
-  hehk: PropTypes.number,
-  /** Set hook on medial heh-goal */
-  setHehk: PropTypes.func.isRequired,
-  /** Initial heh doachashmee */
-  hedo: PropTypes.number,
-  /** Set initial heh doachashmee */
-  setHedo: PropTypes.func.isRequired,
-  /** Lam with V */
-  lamv: PropTypes.number,
-  /** Set lam with V */
-  setLamv: PropTypes.func.isRequired,
-  /** Full stop */
-  cv85: PropTypes.number,
-  /** Set full stop */
-  setCv85: PropTypes.func.isRequired,
-  /** Sukun/jazm */
-  cv78: PropTypes.number,
-  /** Set sukun/jazm */
-  setCv78: PropTypes.func.isRequired,
-  /** Hamza */
-  hamz: PropTypes.number,
-  /** Set hamza */
-  setHamz: PropTypes.func.isRequired,
-  /** Punctuation */
-  punc: PropTypes.number,
-  /** Set punctuation */
-  setPunc: PropTypes.func.isRequired,
-  /** Word spacing */
-  wdsp: PropTypes.number,
-  /** Set word spacing */
-  setWdsp: PropTypes.func.isRequired,
-  /** Short forms */
-  shrt: PropTypes.number,
-  /** Set short forms */
-  setShrt: PropTypes.func.isRequired,
-  /** Collision avoidance */
-  agca: PropTypes.number,
-  /** Set collision avoidance */
-  setAgca: PropTypes.func.isRequired,
+  /** Font Settings Array of Objects */
+  fontSettings: PropTypes.array,
+  /** Set Font Settings */
+  setFontSettings: PropTypes.func.isRequired,
+  /** Font Settings Array of Objects Returned from Print */
+  returnedFontSettings: PropTypes.array,
+  /** Feature Font */
+  featureFont: PropTypes.string,
+  /** Set Feature Font */
+  setFeatureFont: PropTypes.func,
+  /** Returned Feature Font from Print */
+  returnedFeatureFont: PropTypes.string,
 };

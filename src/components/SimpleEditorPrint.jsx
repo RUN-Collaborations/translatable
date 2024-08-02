@@ -29,18 +29,7 @@ export default function SimpleEditorPrint() {
   const displayFont =  quoteOrNot + selectedFontId + quoteOrNot;
   const displayFontSize = printData.selectedFontSize;
   const displayLineHeight = printData.selectedLineHeight;
-  const hehk = printData.hehk;
-  const hedo = printData.hedo;
-  const lamv = printData.lamv;
-  const cv85 = printData.cv85;
-  const cv78 = printData.cv78;
-  const hamz = printData.hamz;
-  const punc = printData.punc;
-  const wdsp = printData.wdsp;
-  const shrt = printData.shrt;
-  const agca = printData.agca;
-
-  const displayFontFeatureSettings = '"hehk"' + hehk + ', "hedo"' + hedo + ', "lamv"' + lamv + ', "cv85"' + cv85 + ', "cv78"' + cv78 + ', "hamz"' + hamz + ', "punc"' + punc + ', "wdsp"' + wdsp + ', "shrt"' + shrt + ', "agca"' + agca;
+  const fontSettingsCss = printData.fontSettingsCss;
 
   const useDetectDirProps = { text: usfmText, isMarkup: true, ratioThreshold: 0.5 };
 
@@ -100,9 +89,9 @@ export default function SimpleEditorPrint() {
       fontFamily: displayFont,
       fontSize: displayFontSize,
       lineHeight: displayLineHeight,
-      fontFeatureSettings: displayFontFeatureSettings,
-      MozFontFeatureSettings: displayFontFeatureSettings,
-      WebkitFontFeatureSettings: displayFontFeatureSettings,
+      fontFeatureSettings: fontSettingsCss,
+      MozFontFeatureSettings: fontSettingsCss,
+      WebkitFontFeatureSettings: fontSettingsCss,
       textAlign: textAlign
       }}>
       { ready && (<Link to="/" state={printData}><button style={{ margin: "0 1.25em", padding: "0.75em" }}>Return to Editor</button></Link>)}

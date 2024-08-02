@@ -12,6 +12,7 @@ import ToolbarCustom from "./ToolbarCustom";
 import { useDetectDir } from "font-detect-rhl";
 import { Redo, Undo } from '@mui/icons-material';
 import { useAssumeGraphite } from "font-detect-rhl";
+import { renderToString } from 'react-dom/server';
 
 const SaveFile = (fileName,text) => {
     fileDownload(text, fileName);
@@ -31,16 +32,9 @@ export default function SimpleEditor(simpleEditorProps) {
     returnedSelectedFontId,
     returnedFontSize,
     returnedLineHeight,
-    returnedHehk,
-    returnedHedo,
-    returnedLamv,
-    returnedCv85,
-    returnedCv78,
-    returnedHamz,
-    returnedPunc,
-    returnedWdsp,
-    returnedShrt,
-    returnedAgca,
+    returnedFontSettingsCss,
+    returnedFontSettings,
+    returnedFeatureFont,
     defaultOptions:{
       editable,
       sectionable,
@@ -110,19 +104,23 @@ export default function SimpleEditor(simpleEditorProps) {
   const [quoteOrNot, setQuoteOrNot] = useState(returnedQuoteOrNot);
   const [selectedFontSize, setSelectedFontSize] = useState(returnedFontSize);
   const [selectedLineHeight, setSelectedLineHeight] = useState(returnedLineHeight);
+  const [fontSettingsCss, setFontSettingsCss] = useState(returnedFontSettingsCss);
+  const [fontSettings, setFontSettings] = useState(returnedFontSettings);
+  const [featureFont, setFeatureFont] = useState(returnedFeatureFont);
 
-  const [hehk, setHehk] = useState(returnedHehk);
-  const [hedo, setHedo] = useState(returnedHedo);
-  const [lamv, setLamv] = useState(returnedLamv);
-  const [cv85, setCv85] = useState(returnedCv85);
-  const [cv78, setCv78] = useState(returnedCv78);
-  const [hamz, setHamz] = useState(returnedHamz);
-  const [punc, setPunc] = useState(returnedPunc);
-  const [wdsp, setWdsp] = useState(returnedWdsp);
-  const [shrt, setShrt] = useState(returnedShrt);
-  const [agca, setAgca] = useState(returnedAgca);
-
-  const selectedFontFeatureSettings = '"hehk"' + hehk + ', "hedo"' + hedo + ', "lamv"' + lamv + ', "cv85"' + cv85 + ', "cv78"' + cv78 + ', "hamz"' + hamz + ', "punc"' + punc + ', "wdsp"' + wdsp + ', "shrt"' + shrt + ', "agca"' + agca;
+  useEffect(() => {
+    if (fontSettings !== null) {
+      const fontSettingsJsx = fontSettings.map((obj, index) => (
+        <div key={index}> ~{obj.name}~ {obj.value},</div>
+      ));
+      // convert jsx return to string and remove html tags and attributes (e.g., div's)
+      const fontSettingsStr = renderToString(fontSettingsJsx).replace(/(<([^>]+)>)/ig, '').replace(/~/gm, '"');
+      // remove the last comma, change ~ to "
+      setFontSettingsCss(fontSettingsStr.substring(0, fontSettingsStr.length - 1).replace(/~/gm, '"'));
+    } else {
+      setFontSettingsCss("");
+    }
+  },[fontSettings])
 
   const printData = {
     usfmText: usfmTextSaved,
@@ -131,16 +129,9 @@ export default function SimpleEditor(simpleEditorProps) {
     selectedFontId: selectedFontId,
     selectedFontSize: selectedFontSize,
     selectedLineHeight: selectedLineHeight,
-    hehk: hehk,
-    hedo: hedo,
-    lamv: lamv,
-    cv85: cv85,
-    cv78: cv78,
-    hamz: hamz,
-    punc: punc,
-    wdsp: wdsp,
-    shrt: shrt,
-    agca: agca,
+    fontSettingsCss: fontSettingsCss,
+    fontSettings: fontSettings,
+    featureFont: featureFont,
     filePath,
   }
 
@@ -188,26 +179,12 @@ export default function SimpleEditor(simpleEditorProps) {
     handleGraphiteClick,
     isDisabled,
     handlePreventClick,
-    hehk,
-    setHehk,
-    hedo,
-    setHedo,
-    lamv,
-    setLamv,
-    cv85,
-    setCv85,
-    cv78,
-    setCv78,
-    hamz,
-    setHamz,
-    punc,
-    setPunc,
-    wdsp,
-    setWdsp,
-    shrt,
-    setShrt,
-    agca,
-    setAgca,
+    fontSettings,
+    setFontSettings,
+    returnedFontSettings,
+    featureFont,
+    setFeatureFont,
+    returnedFeatureFont,
     ...props,
   };
 
@@ -262,9 +239,9 @@ export default function SimpleEditor(simpleEditorProps) {
 
   return <>{ready ? <div ref={ref} onClick={handleClick} style={{
       fontFamily: quoteOrNot + selectedFontId + quoteOrNot,
-      fontFeatureSettings: selectedFontFeatureSettings,
-      MozFontFeatureSettings: selectedFontFeatureSettings,
-      WebkitFontFeatureSettings: selectedFontFeatureSettings,
+      fontFeatureSettings: fontSettingsCss,
+      MozFontFeatureSettings: fontSettingsCss,
+      WebkitFontFeatureSettings: fontSettingsCss,
       fontSize: selectedFontSize,
       lineHeight: selectedLineHeight,
       width: "100%",
@@ -310,4 +287,20 @@ SimpleEditor.propTypes = {
   returnedFontSize: PropTypes.string,
   /** Line Height Returned from Print */
   returnedLineHeight: PropTypes.string,
+  /** Font Settings CSS Returned from Print */
+  returnedFontSettingsCss: PropTypes.string,
+  /** Font Settings Array of Objects Returned from Print */
+  returnedFontSettings: PropTypes.array,
+  /** Feature Font Returned from Print */
+  returnedFeatureFont: PropTypes.string,
 };
+
+/* Add PropTypes for:
+defaultOptions:{
+  editable,
+  sectionable,
+  blockable,
+  preview,
+  stripAlignment: stripAlignment,
+},
+*/
