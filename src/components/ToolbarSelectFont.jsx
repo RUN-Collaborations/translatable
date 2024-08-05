@@ -57,7 +57,7 @@ export default function ToolbarSelectFont(ToolbarSelectFontProps) {
     setQuoteOrNot(event.target.value === "monospace" ? "" : "'");
   };
 
-  // Graphite-enabled web fonts - avoid conflict with locally installed fonts; using a a different css id from the font name!
+  // Graphite-enabled web fonts - avoid conflict with locally installed fonts; using a different css id from the font name!
   const GraphiteEnabledWebFonts =
   assumeGraphite &&
   GraphiteEnabledWebFontsArray.map((font, index) => (
