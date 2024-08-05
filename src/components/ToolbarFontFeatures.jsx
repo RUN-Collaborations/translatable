@@ -1,11 +1,11 @@
   /* eslint-disable no-irregular-whitespace */
   import { useState, useCallback, useMemo, useEffect } from "react";
   import { Box, ClickAwayListener, FormControl, createTheme, ThemeProvider, Grid } from "@mui/material";
-  import graphiteEnabledFeatures from '../fontFeatures/graphiteEnabledFeatures.json';
+  import { renderToString } from 'react-dom/server';
   import { useDetectDir } from "font-detect-rhl";
+  import graphiteEnabledFeatures from '../fontFeatures/graphiteEnabledFeatures.json';
   import FontFeatureSettingsArr from "../helpers/FontFeatureSettingsArr";
   import FontFeatureSettings from "./FontFeatureSettings";
-  import { renderToString } from 'react-dom/server';
   import PropTypes from 'prop-types';
 
   export default function ToolbarFontFeatures(toolbarFontFeaturesProps) {
@@ -151,8 +151,6 @@
       }
     }, [labelDir]);
 
-    // const fontNames = graphiteEnabledFeatures.map(({ name }) => name);
-    // The fontName will need to be entered dynamically in the theme, in place of Awami Nastaliq below.
     const theme =  useMemo(() => createTheme({
       typography: {
         fontFamily: [

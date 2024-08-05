@@ -1,7 +1,7 @@
 import { useMemo } from "react";
 import { FormLabel, FormControlLabel, RadioGroup, Radio, Typography, Tooltip } from "@mui/material";
-import graphiteEnabledFeatures from '../fontFeatures/graphiteEnabledFeatures.json';
 import DOMPurify from 'dompurify';
+import graphiteEnabledFeatures from '../fontFeatures/graphiteEnabledFeatures.json';
 
 export default function FontFeatureSettings(fontFeatureSettingsProps) {
   const {
