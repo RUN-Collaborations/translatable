@@ -1,11 +1,11 @@
 import { useMemo } from "react";
 import { renderToString } from 'react-dom/server';
-import graphiteEnabledFeatures from '../fontFeatures/graphiteEnabledFeatures.json';
+import { graphiteEnabledFeatures } from "font-detect-rhl";
 
-export default function FontFeatureSettingsArr(fontFeatureSettingsArrProps) {
+export default function FontFeatureDefaults(FontFeatureDefaultsProps) {
   const {
     featureFont,
-  } = fontFeatureSettingsArrProps;
+  } = FontFeatureDefaultsProps;
 
   // This creates an array of font settings names and default values
   const fontSettingsJsx = useMemo(() => graphiteEnabledFeatures.filter((name) => name?.name === featureFont).map((font, fontIndex) => (

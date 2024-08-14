@@ -2946,6 +2946,14 @@ font-detect-rhl@^1.0.9:
     prop-types "^15.6.1"
     use-deep-compare "^1.1.0"
 
+font-detect-rhl@^1.1.1:
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/font-detect-rhl/-/font-detect-rhl-1.1.1.tgz#2fb0a9ef966906cac8bff63efe3cc23204621623"
+  integrity sha512-N0pMcVRRqY1LJDipiUBGtsSgdEj2In/qQ9vwOsGgW6fJDlYPQ8+txzSEU+jv5uaxmKH9iGg38Jqq+pNF8Nl2cw==
+  dependencies:
+    prop-types "^15.6.1"
+    use-deep-compare "^1.1.0"
+
 for-each@^0.3.3:
   version "0.3.3"
   resolved "https://registry.yarnpkg.com/for-each/-/for-each-0.3.3.tgz#69b447e88a0a5d32c3e7084f3f1710034b21376e"

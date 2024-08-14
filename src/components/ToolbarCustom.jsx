@@ -8,7 +8,7 @@ import ToolbarFontSize from "./ToolbarFontSize";
 import ToolbarFontFeatures from "./ToolbarFontFeatures";
 import ToolbarGraphite from "./ToolbarGraphite";
 import sx from "./ToolbarCustom.styles";
-import graphiteEnabledFeatures from '../fontFeatures/graphiteEnabledFeatures.json';
+import { graphiteEnabledFeatures } from "font-detect-rhl";
 import GraphiteEnabledWebFontsArray from '../embeddedWebFonts/GraphiteEnabledWebFonts.json';
 import PropTypes from 'prop-types';
 
