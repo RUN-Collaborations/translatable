@@ -2,9 +2,8 @@
   import { useState, useCallback, useMemo, useEffect } from "react";
   import { Box, ClickAwayListener, FormControl, createTheme, ThemeProvider, Grid } from "@mui/material";
   import { renderToString } from 'react-dom/server';
-  import { useDetectDir } from "font-detect-rhl";
-  import graphiteEnabledFeatures from '../fontFeatures/graphiteEnabledFeatures.json';
-  import FontFeatureSettingsArr from "../helpers/FontFeatureSettingsArr";
+  import { useDetectDir, graphiteEnabledFeatures } from "font-detect-rhl";
+  import FontFeatureDefaults from "../helpers/FontFeatureDefaults";
   import FontFeatureSettings from "./FontFeatureSettings";
   import PropTypes from 'prop-types';
 
@@ -63,18 +62,15 @@
       overflow: "scroll",
     };
 
+    // The diffStyle constant is for emphasis in Awami Nastliq labels.
     // eslint-disable-next-line no-unused-vars
-    const fontColor = 'yellow';
-    // The above line is for styling of Awami Nastliq labels from json.
+    const diffStyle = "color: yellow;";
 
     useEffect(() => {
       setFeatureFont(embeddedFontIfListed.length > 0 ? embeddedFontIfListed : selectedFontName);
     },[embeddedFontIfListed, selectedFontName, setFeatureFont])
 
-    const fontFeatureSettingsArrProps = {
-      featureFont,
-    };
-    const fontSettingsArr = FontFeatureSettingsArr(fontFeatureSettingsArrProps)
+    const fontSettingsArr = FontFeatureDefaults({ featureFont: featureFont })
 
     // It is okay when don't have a recent returnedFontSettings. It's purpose is to keep from changing back to default values when we do.
     const arrayCheck = (returnedFontSettings?.length || 0);
@@ -95,7 +91,7 @@
     // eslint-disable-next-line react-hooks/exhaustive-deps
     },[featureFont]);
     
-    // This gets all radio label text to identify the direction. The alternative is to add label direction to the json file, or to set the direction individually for each label.
+    // This gets all radio label text and uses it to identify the most common text direction, for use in the font feature settings container.
     const labelJsxText = useMemo(() => graphiteEnabledFeatures.filter((name) => name?.name === featureFont).map((font, fontIndex) => (
       <div key={fontIndex}>
         {font.categories.map((categories, categoriesIndex) => {
@@ -200,6 +196,7 @@
       radioRightMargin,
       radioLeftMargin,
       label,
+      diffStyle,
     };
 
     const DrawerList = (

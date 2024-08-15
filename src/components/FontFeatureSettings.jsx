@@ -1,7 +1,7 @@
 import { useMemo } from "react";
 import { FormLabel, FormControlLabel, RadioGroup, Radio, Typography, Tooltip } from "@mui/material";
 import DOMPurify from 'dompurify';
-import graphiteEnabledFeatures from '../fontFeatures/graphiteEnabledFeatures.json';
+import { graphiteEnabledFeatures } from "font-detect-rhl";
 
 export default function FontFeatureSettings(fontFeatureSettingsProps) {
   const {
@@ -12,6 +12,7 @@ export default function FontFeatureSettings(fontFeatureSettingsProps) {
     radioRightMargin,
     radioLeftMargin,
     label,
+    diffStyle,
   } = fontFeatureSettingsProps;
 
   const labelDivStyle = useMemo(() => ({
@@ -73,7 +74,7 @@ export default function FontFeatureSettings(fontFeatureSettingsProps) {
                                 value={option.value}
                                 style={{ fontFeatureSettings: '"' + set.name + '" ' + option.value, MozFontFeatureSettings: '"' + set.name + '" ' + option.value, WebkitFontFeatureSettings: '"' + set.name + '" ' + option.value }}
                                 control={<Radio />}
-                                label={<Typography sx={label}><div dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(set.label) }} /></Typography>}
+                                label={<Typography sx={label}><div dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(set.label).replaceAll('{diffStyle}', diffStyle) }} /></Typography>}
                               />
                             </Tooltip>
                           </div>)
@@ -88,7 +89,7 @@ export default function FontFeatureSettings(fontFeatureSettingsProps) {
       </div>)
       })}
     </div>
-  )), [featureFont, count, labelDivStyle, labelMarkStyle, fontSettings, handleChange, radioColor, placementDir, tooltipPosition, radioRightMargin, radioLeftMargin, label]);
+  )), [featureFont, labelDivStyle, labelMarkStyle, fontSettings, count, handleChange, radioColor, placementDir, tooltipPosition, radioRightMargin, radioLeftMargin, label, diffStyle]);
 
   return featureSettings;
 }
