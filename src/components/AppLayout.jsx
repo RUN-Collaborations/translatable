@@ -45,8 +45,30 @@ export default function AppLayout() {
 
   const [Dialog, decision] = WordAttributesAndAlignment(dialogType, filename, wEmptyNum, wEmptyLemmaOnlyNum,);
   
+  // Change startLoading and endLoading to handleLoading()
+  const startLoading = () => {
+    setLoading(true);
+  };
+  const endLoading = () => {
+    setLoading(false);
+  };
+
+  // change back to set?
+  const handleFilename = (name) => {
+    setFilename(name);
+  }
+  const handleUsfmText = (usfmContent) => {
+    setUsfmText(usfmContent)
+  };
+  const handleUsfmFileLoaded = (boolean) => {
+    setUsfmFileLoaded(boolean);
+  };
+  const handleGetUsfm = (boolean) => {
+    setOpen(boolean);
+  };
+
   const handleOpen = async () => {
-    setLoading(true)
+    setLoading(true);
     const file = await fileOpen([
       {
         description: 'USFM - text files',
@@ -119,21 +141,27 @@ export default function AppLayout() {
   };
   
   const proceed = (contents) => {
-    setUsfmText(contents)
-    setUsfmFileLoaded(true)
-    setLoading(false)
+    setUsfmText(contents);
+    setUsfmFileLoaded(true);
+    handleGetUsfm(false);
+    setLoading(false);
   };
 
   const handleCancel = () => {}
 
+  const [open, setOpen] = useState(false);
+  
   const simpleEditorProps = {
     docSetId: 'abc-xyz',
     usfmText,
     filePath: filename,
-    setUsfmText: {setUsfmText},
-    setUsfmFileLoaded: {setUsfmFileLoaded},
-    setLoading: {setLoading},
-    setFilename: {setFilename},
+    handleUsfmText,
+    handleUsfmFileLoaded,
+    // setUsfmText: {setUsfmText},
+    // setUsfmFileLoaded: {setUsfmFileLoaded},
+    startLoading,
+    endLoading,
+    handleFilename,
     handleOpen: {handleOpen},
     handleCancel: {handleCancel},
     returnedQuoteOrNot,
@@ -144,6 +172,9 @@ export default function AppLayout() {
     returnedFontSettingsCss,
     returnedFontSettings,
     returnedFeatureFont,
+    handleGetUsfm,
+    setOpen,
+    open,
     defaultOptions:{
       editable: false,
       sectionable: false,
@@ -171,6 +202,21 @@ export default function AppLayout() {
       { usfmFileLoaded && <SimpleEditor {...simpleEditorProps } />}
     </div>
 
+  const headerProps ={
+    title:"Translatable-FF",
+    handleGetUsfm,
+    onOpenClick:handleOpen,
+    handleFilename,
+    handleUsfmText,
+    usfmText,
+    setFilename,
+    startLoading,
+    endLoading,
+    handleUsfmFileLoaded,
+    setOpen,
+    open,
+  }
+
   return (
       <Box sx={{ flexGrow: 1 }}>
         <Paper
@@ -183,10 +229,7 @@ export default function AppLayout() {
           elevation={3}
         >
         {!usfmFileLoaded && !loading && 
-          (<Header 
-            title={"Translatable-FF"}
-            onOpenClick={handleOpen}
-          />)}
+          (<Header {...headerProps} />)}
         </Paper>
         <Grid
           sx={{
@@ -207,10 +250,7 @@ export default function AppLayout() {
                   paddingTop: '150px',
                 }}
               >
-                <Header 
-                  title={"Translatable-FF"}
-                  onOpenClick={handleOpen}
-                />
+                <Header {...headerProps} />
               </Box>
             )}
         </Grid>

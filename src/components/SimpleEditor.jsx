@@ -35,6 +35,14 @@ export default function SimpleEditor(simpleEditorProps) {
     returnedFontSettingsCss,
     returnedFontSettings,
     returnedFeatureFont,
+    handleGetUsfm,
+    handleUsfmText,
+    handleFilename,
+    setOpen,
+    open,
+    startLoading,
+    endLoading,
+    handleUsfmFileLoaded,
     defaultOptions:{
       editable,
       sectionable,
@@ -143,8 +151,9 @@ export default function SimpleEditor(simpleEditorProps) {
       setIsDisabled(false);
       if (link === 'print') navigate('print', { state: {printData} });
       if (link === 'usfm') navigate('usfm', { state: {printData} });
-      if (link === 'open') {
-        handleOpen();
+      if (link === 'getusfm') {
+        // handleOpen(); // This is triggering file-open and the new dialog behind it.
+        handleGetUsfm(true);
       }
     }
   }
@@ -185,6 +194,15 @@ export default function SimpleEditor(simpleEditorProps) {
     featureFont,
     setFeatureFont,
     returnedFeatureFont,
+    onOpenClick:handleOpen,
+    handleGetUsfm,
+    handleUsfmText,
+    handleFilename,
+    open,
+    setOpen,
+    startLoading,
+    endLoading,
+    handleUsfmFileLoaded,
     ...props,
   };
 
@@ -237,6 +255,20 @@ export default function SimpleEditor(simpleEditorProps) {
     ...props,
   }
 
+  const headerProps ={
+    title:"Translatable-FF",
+    handleGetUsfm,
+    onOpenClick:handleOpen,
+    handleUsfmText,
+    usfmText,
+    handleFilename,
+    startLoading,
+    endLoading,
+    handleUsfmFileLoaded,
+    setOpen,
+    open,
+  }
+
   return <>{ready ? <div ref={ref} onClick={handleClick} style={{
       fontFamily: quoteOrNot + selectedFontId + quoteOrNot,
       fontFeatureSettings: fontSettingsCss,
@@ -254,10 +286,7 @@ export default function SimpleEditor(simpleEditorProps) {
       justifyContent: 'center', 
       paddingTop: '150px',
     }}>
-    <Header 
-      title={"Translatable-FF"}      
-      onOpenClick={handleOpen}
-    />
+    <Header {...headerProps} />
     <CircularProgress size={200} sx={{color: '#124116'}} />
   </Box> }</>
 }
