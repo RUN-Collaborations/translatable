@@ -140,6 +140,7 @@ export default function SimpleEditor(simpleEditorProps) {
     fontSettings: fontSettings,
     featureFont: featureFont,
     filePath,
+    stripAlignment: stripAlignment,
   }
 
   const handleNotSavedClick = (epiteleteHtml, bookId, link) => {

@@ -21,6 +21,7 @@ export default function AppLayout() {
     "fontSettings": null,
     "featureFont" : "",
     "filePath": "",
+    "stripAlignment": false,
   };
   const returnedUsfmText = editorData.usfmText;
   const returnedFileLoaded = (location.state ? true : false)
@@ -33,6 +34,7 @@ export default function AppLayout() {
   const returnedFontSettings = editorData.fontSettings;
   const returnedFeatureFont = editorData.featureFont;
   const returnedFilePath = location.state ? editorData.filePath : 'temp.usfm';
+  const returnedStripAlignment = editorData.stripAlignment;
 
   const [usfmText, setUsfmText] = useState(returnedUsfmText)
   const [loading, setLoading] = useState(false)
@@ -41,7 +43,7 @@ export default function AppLayout() {
   const [dialogType, setDialogType] = useState("");
   const [wEmptyNum, setWEmptyNum] = useState(0);
   const [wEmptyLemmaOnlyNum, setWEmptyLemmaOnlyNum] = useState(0);
-  const [stripAlignment, setStripAlignment] = useState(false);
+  const [stripAlignment, setStripAlignment] = useState(returnedStripAlignment);
 
   const [Dialog, decision] = WordAttributesAndAlignment(dialogType, filename, wEmptyNum, wEmptyLemmaOnlyNum,);
   

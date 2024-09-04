@@ -30,6 +30,7 @@ import { useDetectDir } from "font-detect-rhl";
     const fontSettings = usfmDataIn.fontSettings;
     const featureFont = usfmDataIn.featureFont;
     const filePath = usfmDataIn.filePath;
+    const stripAlignment = usfmDataIn.stripAlignment;
 
     const [usfmText, setUsfmText] = useState(usfmTextIn);
     
@@ -44,6 +45,7 @@ import { useDetectDir } from "font-detect-rhl";
       featureFont: featureFont,
       fontSettings: fontSettings,
       filePath,
+      stripAlignment: stripAlignment,
     }
   
     const useDetectDirProps = { text: usfmText, isMarkup: true, ratioThreshold: 0.5 };
