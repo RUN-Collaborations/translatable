@@ -7,6 +7,7 @@ import ToolbarLineHeight from "./ToolbarLineHeight";
 import ToolbarFontSize from "./ToolbarFontSize";
 import ToolbarFontFeatures from "./ToolbarFontFeatures";
 import ToolbarGraphite from "./ToolbarGraphite";
+import GetUsfm from "./GetUsfm";
 import sx from "./ToolbarCustom.styles";
 import { graphiteEnabledFeatures } from "font-detect-rhl";
 import GraphiteEnabledWebFontsArray from '../embeddedWebFonts/GraphiteEnabledWebFonts.json';
@@ -36,6 +37,14 @@ export default function ToolbarCustom(toolbarCustomProps) {
       featureFont,
       setFeatureFont,
       returnedFeatureFont,
+      onOpenClick,
+      handleGetUsfm,
+      handleUsfmText,
+      handleFilename,
+      open,
+      setOpen,
+      loadingStatus,
+      handleUsfmFileLoaded,
   } = toolbarCustomProps;
 
   const [graphiteEnabledSettings, setGraphiteEnabledSettings] = useState(false);
@@ -120,6 +129,17 @@ export default function ToolbarCustom(toolbarCustomProps) {
     selectedLineHeight,
   };
 
+  const getUsfmProps = {
+    onOpenClick,
+    handleUsfmText,
+    handleGetUsfm,
+    handleFilename,
+    open,
+    setOpen,
+    loadingStatus,
+    handleUsfmFileLoaded,
+  };
+
   return (
     <div key="header" style={{ color: "white", backgroundColor: "#124116", minHeight: "64px", width: '100%', fontFamily: keywordFont, fontSize: '12px', lineHeight: '24px' }} >
       <Toolbar sx={{ justifyContent: "space-between" }}>  
@@ -162,12 +182,13 @@ export default function ToolbarCustom(toolbarCustomProps) {
             variant='extended'
             //onClick={handleOpen}
             onClick={handlePreventClick}
-            id="open"
+            id="getusfm"
             disabled={isDisabled}
             sx={sx.fab}
           >
             <SourceIcon sx={sx.extendedIcon} />
           </Fab>
+          <GetUsfm {...getUsfmProps} />
         </>
       </Toolbar>
     </div>

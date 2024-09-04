@@ -1,8 +1,6 @@
-import AppBar from '@mui/material/AppBar';
-import Toolbar from '@mui/material/Toolbar';
-import Typography from '@mui/material/Typography';
-import Fab from '@mui/material/Fab';
+import { AppBar, Toolbar, Typography, Fab } from '@mui/material';
 import SourceIcon from '@mui/icons-material/Source';
+import GetUsfm from './GetUsfm';
 import PropTypes from 'prop-types';
 
 const sx = {
@@ -20,7 +18,32 @@ const sx = {
 }
 
 export default function Header(headerProps) {
-  const { title, onOpenClick, } = headerProps;
+  const {
+    title,
+    onOpenClick,
+    handleUsfmText,
+    handleFilename,
+    loadingStatus,
+    handleUsfmFileLoaded,
+    handleGetUsfm,
+    setOpen,
+    open,
+  } = headerProps;
+
+const handleOpen = () => { 
+  handleGetUsfm(true);
+};
+
+const getUsfmProps = {
+  handleGetUsfm,
+  onOpenClick,
+  handleUsfmText,
+  handleFilename,
+  open,
+  setOpen,
+  loadingStatus,
+  handleUsfmFileLoaded,
+};
 
   return (
     <AppBar position='fixed' sx={{ bgcolor: "#124116" }}>
@@ -38,10 +61,11 @@ export default function Header(headerProps) {
             //color='primary'
             aria-label='view'
             variant='extended'
-            onClick={onOpenClick}
+            onClick={handleOpen}
           >
             <SourceIcon sx={sx.extendedIcon} />
           </Fab>
+          <GetUsfm {...getUsfmProps} />
         </>
       </Toolbar>
     </AppBar>
