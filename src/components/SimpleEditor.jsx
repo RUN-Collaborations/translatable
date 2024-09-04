@@ -39,19 +39,19 @@ export default function SimpleEditor(simpleEditorProps) {
     handleUsfmText,
     handleFilename,
     setOpen,
-    open,
+    open = false,
     loadingStatus,
     handleUsfmFileLoaded,
     defaultOptions:{
-      editable,
-      sectionable,
-      blockable,
-      preview,
+      editable = false,
+      sectionable = false,
+      blockable = false,
+      preview = true,
       stripAlignment: stripAlignment,
     },
     ...props
    } = simpleEditorProps;
-   
+
   const verbose = true;
   const [ready, setReady] = useState(false);
   const epiteleteHtml = useMemo(
@@ -345,13 +345,3 @@ SimpleEditor.propTypes = {
 
 };
 
-SimpleEditor.defaultProps = {
-  open: false,
-  defaultOptions: {
-    editable: false,
-    sectionable: false,
-    blockable: false,
-    preview: true,
-    stripAlignment: false,
-  },
-};

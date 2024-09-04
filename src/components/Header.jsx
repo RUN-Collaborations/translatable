@@ -27,7 +27,7 @@ export default function Header(headerProps) {
     handleUsfmFileLoaded,
     handleGetUsfm,
     setOpen,
-    open,
+    open = false,
   } = headerProps;
 
 const handleOpen = () => { 
@@ -92,7 +92,3 @@ Header.propTypes = {
   /** open */
   open: PropTypes.bool,
   };
-
-Header.defaultProps = {
-  open: false,
-};

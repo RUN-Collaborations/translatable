@@ -113,6 +113,3 @@ FontFeatureSettings.propTypes = {
   /** Difference Style */
   diffStyle: PropTypes.string,
 };
-
-FontFeatureSettings.defaultProps = {
-};
