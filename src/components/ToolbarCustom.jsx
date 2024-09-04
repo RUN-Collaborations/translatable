@@ -43,8 +43,7 @@ export default function ToolbarCustom(toolbarCustomProps) {
       handleFilename,
       open,
       setOpen,
-      startLoading,
-      endLoading,
+      loadingStatus,
       handleUsfmFileLoaded,
   } = toolbarCustomProps;
 
@@ -137,8 +136,7 @@ export default function ToolbarCustom(toolbarCustomProps) {
     handleFilename,
     open,
     setOpen,
-    startLoading,
-    endLoading,
+    loadingStatus,
     handleUsfmFileLoaded,
   };
 

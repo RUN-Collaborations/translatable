@@ -45,15 +45,10 @@ export default function AppLayout() {
 
   const [Dialog, decision] = WordAttributesAndAlignment(dialogType, filename, wEmptyNum, wEmptyLemmaOnlyNum,);
   
-  // Change startLoading and endLoading to handleLoading()
-  const startLoading = () => {
-    setLoading(true);
-  };
-  const endLoading = () => {
-    setLoading(false);
-  };
+  const loadingStatus = (boolean) => {
+    setLoading(boolean)
+    };
 
-  // change back to set?
   const handleFilename = (name) => {
     setFilename(name);
   }
@@ -157,10 +152,7 @@ export default function AppLayout() {
     filePath: filename,
     handleUsfmText,
     handleUsfmFileLoaded,
-    // setUsfmText: {setUsfmText},
-    // setUsfmFileLoaded: {setUsfmFileLoaded},
-    startLoading,
-    endLoading,
+    loadingStatus,
     handleFilename,
     handleOpen: {handleOpen},
     handleCancel: {handleCancel},
@@ -210,8 +202,7 @@ export default function AppLayout() {
     handleUsfmText,
     usfmText,
     setFilename,
-    startLoading,
-    endLoading,
+    loadingStatus,
     handleUsfmFileLoaded,
     setOpen,
     open,

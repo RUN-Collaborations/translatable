@@ -9,8 +9,7 @@ export default function GetUsfm(getUsfmProps) {
     handleFilename,
     open,
     handleGetUsfm,
-    startLoading,
-    endLoading,
+    loadingStatus,
     handleUsfmFileLoaded,
   } = getUsfmProps;
 
@@ -19,7 +18,7 @@ export default function GetUsfm(getUsfmProps) {
   const importedUsfm = importPlaceholder.usfmText;
 
   const handleImport = async () => {
-    startLoading();
+    loadingStatus(true);
     const usfmImport = await importedUsfm; // Change to imported data
     const filePath = 'importFilename.usfm'; // file?.usfm Change to imported data
     if (filePath !== null) {
@@ -40,7 +39,7 @@ export default function GetUsfm(getUsfmProps) {
     handleUsfmText(contents);
     handleUsfmFileLoaded(true);
     handleGetUsfm(false);
-    endLoading();
+    loadingStatus(false);
   };
 
   const handleClose = () => {
@@ -82,4 +81,20 @@ export default function GetUsfm(getUsfmProps) {
 GetUsfm.propTypes = {
   /** Open File Function */
   onOpenClick: PropTypes.func.isRequired,
+  /** handleUsfmText Function runs setUsfmText */
+  handleUsfmText: PropTypes.func.isRequired,
+  /** handleFilename Function runs setFilename */
+  handleFilename: PropTypes.func.isRequired,
+  /** Open? */
+  open: PropTypes.bool,
+  /** handleGetUsfm Function runs setOpen */
+  handleGetUsfm: PropTypes.func.isRequired,
+  /** loadingStatus Function runs setLoading */
+  loadingStatus: PropTypes.func.isRequired,
+  /** handleUsfmFileLoaded Function runs setUsfmFileLoaded */
+  handleUsfmFileLoaded: PropTypes.func.isRequired,
+};
+
+GetUsfm.defaultProps = {
+  open: false,
 };

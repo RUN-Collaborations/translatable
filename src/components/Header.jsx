@@ -23,8 +23,7 @@ export default function Header(headerProps) {
     onOpenClick,
     handleUsfmText,
     handleFilename,
-    startLoading,
-    endLoading,
+    loadingStatus,
     handleUsfmFileLoaded,
     handleGetUsfm,
     setOpen,
@@ -42,8 +41,7 @@ const getUsfmProps = {
   handleFilename,
   open,
   setOpen,
-  startLoading,
-  endLoading,
+  loadingStatus,
   handleUsfmFileLoaded,
 };
 
