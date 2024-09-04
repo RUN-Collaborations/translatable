@@ -182,7 +182,7 @@
     }), [labelDir, placementDir, selectedFontName]);
 
     // This sx is the same as adding to const theme a components:{MuiTypography:{styleOverrides:{root:{"&.MuiTypography-root":{css_goes_here}}}}}
-    const label = useMemo(() => ({
+    const labelStyle = useMemo(() => ({
       lineHeight: selectedLineHeight,
       fontSize: selectedFontSize,
     }),[selectedFontSize, selectedLineHeight]);
@@ -195,7 +195,7 @@
       placementDir,
       radioRightMargin,
       radioLeftMargin,
-      label,
+      labelStyle,
       diffStyle,
     };
 

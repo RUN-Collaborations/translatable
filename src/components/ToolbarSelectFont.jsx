@@ -148,8 +148,12 @@ ToolbarSelectFont.propTypes = {
   setCustomFont: PropTypes.func.isRequired,
   /** Set Type Font Is On */
   setTypeIsOn: PropTypes.func.isRequired,
-  /** Is Disabled? */
-  isDisabled: PropTypes.bool,
   /** Assume Graphite? */
   assumeGraphite: PropTypes.bool,
+};
+
+ToolbarSelectFont.defaultProps = {
+  selectedFontName: '',
+  selectedFontId: '',
+  customFont: '',
 };

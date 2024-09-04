@@ -102,3 +102,6 @@ FontMenuItem.propTypes = {
     id: PropTypes.string,
   }),
 };
+
+FontMenuItem.defaultProps = {
+};

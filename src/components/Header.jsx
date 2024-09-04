@@ -77,4 +77,22 @@ Header.propTypes = {
   title: PropTypes.string,
   /** Open File Function */
   onOpenClick: PropTypes.func.isRequired,
+  /** handleUsfmText */
+  handleUsfmText: PropTypes.func.isRequired,
+  /** handleFilename */
+  handleFilename: PropTypes.func.isRequired,
+  /** loadingStatus */
+  loadingStatus: PropTypes.func.isRequired,
+  /** handleUsfmFileLoaded */
+  handleUsfmFileLoaded: PropTypes.func.isRequired,
+  /** handleGetUsfm */
+  handleGetUsfm: PropTypes.func.isRequired,
+  /** setOpen */
+  setOpen: PropTypes.func.isRequired,
+  /** open */
+  open: PropTypes.bool,
+  };
+
+Header.defaultProps = {
+  open: false,
 };

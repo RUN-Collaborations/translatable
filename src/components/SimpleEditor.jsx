@@ -51,7 +51,7 @@ export default function SimpleEditor(simpleEditorProps) {
     },
     ...props
    } = simpleEditorProps;
-
+   
   const verbose = true;
   const [ready, setReady] = useState(false);
   const epiteleteHtml = useMemo(
@@ -299,7 +299,7 @@ SimpleEditor.propTypes = {
   /** Doc Set Id */
   docSetId: PropTypes.string,
   /** USFM Text */
-  usfmText: PropTypes.string,
+  usfmText: PropTypes.string.isRequired,
   /** Open Object */
   handleOpen: PropTypes.object.isRequired,
   /** Cancel Object */
@@ -320,14 +320,38 @@ SimpleEditor.propTypes = {
   returnedFontSettings: PropTypes.array,
   /** Feature Font Returned from Print */
   returnedFeatureFont: PropTypes.string,
+  /** handleGetUsfm */
+  handleGetUsfm: PropTypes.func.isRequired,
+  /** handleUsfmText */
+  handleUsfmText: PropTypes.func.isRequired,
+  /** handleFilename */
+  handleFilename: PropTypes.func.isRequired,
+  /** setOpen */
+  setOpen: PropTypes.func.isRequired,
+  /** open */
+  open: PropTypes.bool,
+  /** loadingStatus */
+  loadingStatus: PropTypes.func.isRequired,
+  /** handleUsfmFileLoaded */
+  handleUsfmFileLoaded: PropTypes.func.isRequired,
+  /** Default Options for OCE Editor */
+  defaultOptions: PropTypes.shape({
+    editable: PropTypes.bool,
+    sectionable: PropTypes.bool,
+    blockable: PropTypes.bool,
+    preview: PropTypes.bool,
+    stripAlignment: PropTypes.bool,
+  }),
+
 };
 
-/* Add PropTypes for:
-defaultOptions:{
-  editable,
-  sectionable,
-  blockable,
-  preview,
-  stripAlignment: stripAlignment,
-},
-*/
+SimpleEditor.defaultProps = {
+  open: false,
+  defaultOptions: {
+    editable: false,
+    sectionable: false,
+    blockable: false,
+    preview: true,
+    stripAlignment: false,
+  },
+};

@@ -1,4 +1,5 @@
 import { useMemo } from "react";
+import PropTypes from "prop-types";
 import { FormLabel, FormControlLabel, RadioGroup, Radio, Typography, Tooltip } from "@mui/material";
 import DOMPurify from 'dompurify';
 import { graphiteEnabledFeatures } from "font-detect-rhl";
@@ -11,7 +12,7 @@ export default function FontFeatureSettings(fontFeatureSettingsProps) {
     placementDir,
     radioRightMargin,
     radioLeftMargin,
-    label,
+    labelStyle,
     diffStyle,
   } = fontFeatureSettingsProps;
 
@@ -74,7 +75,7 @@ export default function FontFeatureSettings(fontFeatureSettingsProps) {
                                 value={option.value}
                                 style={{ fontFeatureSettings: '"' + set.name + '" ' + option.value, MozFontFeatureSettings: '"' + set.name + '" ' + option.value, WebkitFontFeatureSettings: '"' + set.name + '" ' + option.value }}
                                 control={<Radio />}
-                                label={<Typography sx={label}><div dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(set.label).replaceAll('{diffStyle}', diffStyle) }} /></Typography>}
+                                label={<Typography sx={labelStyle}><div dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(set.label).replaceAll('{diffStyle}', diffStyle) }} /></Typography>}
                               />
                             </Tooltip>
                           </div>)
@@ -89,7 +90,29 @@ export default function FontFeatureSettings(fontFeatureSettingsProps) {
       </div>)
       })}
     </div>
-  )), [featureFont, labelDivStyle, labelMarkStyle, fontSettings, count, handleChange, radioColor, placementDir, tooltipPosition, radioRightMargin, radioLeftMargin, label, diffStyle]);
+  )), [featureFont, labelDivStyle, labelMarkStyle, fontSettings, count, handleChange, radioColor, placementDir, tooltipPosition, radioRightMargin, radioLeftMargin, labelStyle, diffStyle]);
 
   return featureSettings;
 }
+
+FontFeatureSettings.propTypes = {
+  /** Feature Font */
+  featureFont: PropTypes.string.isRequired,
+  /** Font Settings Array of Objects */
+  fontSettings: PropTypes.array.isRequired,
+  /** Handle Change Function */
+  handleChange: PropTypes.func.isRequired,
+  /** Placement Direction */
+  placementDir: PropTypes.string,
+  /** Radio Right Margin */
+  radioRightMargin: PropTypes.string,
+  /** Radio Left Margin */
+  radioLeftMargin: PropTypes.string,
+  /** Label Style */
+  labelStyle: PropTypes.object,
+  /** Difference Style */
+  diffStyle: PropTypes.string,
+};
+
+FontFeatureSettings.defaultProps = {
+};

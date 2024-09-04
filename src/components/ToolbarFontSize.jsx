@@ -81,3 +81,6 @@ ToolbarFontSize.propTypes = {
   /** Set Selected Font Size */
   setSelectedFontSize: PropTypes.func.isRequired,
 };
+
+ToolbarFontSize.defaultProps = {
+};
