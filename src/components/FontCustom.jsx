@@ -5,7 +5,7 @@ import FormControl from "@mui/material/FormControl";
 import { Grid, TextField, Stack } from "@mui/material";
 
 export default function CustomFont(fontCustomProps) {
-  const { customFont, setCustomFont, setTypeIsOn, selectedFont } = fontCustomProps;
+  const { customFont, setCustomFont, setTypeIsOn, selectedFontName } = fontCustomProps;
 
   // on click event for setting font
   const handleSubmit = (event) => {
@@ -33,7 +33,7 @@ export default function CustomFont(fontCustomProps) {
 
   const closeCustomFont = () => {
     setTypeIsOn(false);
-    if (customFont === "" && selectedFont === "type font") setCustomFont("monospace");
+    if (customFont === "" && selectedFontName === "type font") setCustomFont("monospace");
   };
 
   return (
@@ -93,9 +93,10 @@ CustomFont.propTypes = {
   /** Set Type [Custom Font] is on */
   setTypeIsOn: PropTypes.func.isRequired,
   /** Selected Font */
-  selectedFont: PropTypes.string,
+  selectedFontName: PropTypes.string,
 };
 
 CustomFont.defaultProps = {
   customFont: "",
+  selectedFontName: "type font",
 };

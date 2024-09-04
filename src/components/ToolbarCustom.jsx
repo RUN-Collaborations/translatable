@@ -17,34 +17,34 @@ const keywordFont = 'sans-serif';
 
 export default function ToolbarCustom(toolbarCustomProps) {
   const {
-      selectedFontName,
-      setSelectedFontName,
-      selectedFontId,
-      setSelectedFontId,
-      quoteOrNot,
-      setQuoteOrNot,
-      selectedFontSize,
-      setSelectedFontSize,
-      selectedLineHeight,
-      setSelectedLineHeight,
-      assumeGraphite,
-      handleGraphiteClick,
-      isDisabled,
-      handlePreventClick,
-      fontSettings,
-      setFontSettings,
-      returnedFontSettings,
-      featureFont,
-      setFeatureFont,
-      returnedFeatureFont,
-      onOpenClick,
-      handleGetUsfm,
-      handleUsfmText,
-      handleFilename,
-      open,
-      setOpen,
-      loadingStatus,
-      handleUsfmFileLoaded,
+    selectedFontName,
+    setSelectedFontName,
+    selectedFontId,
+    setSelectedFontId,
+    quoteOrNot,
+    setQuoteOrNot,
+    selectedFontSize,
+    setSelectedFontSize,
+    selectedLineHeight,
+    setSelectedLineHeight,
+    assumeGraphite,
+    handleGraphiteClick,
+    isDisabled,
+    handlePreventClick,
+    fontSettings,
+    setFontSettings,
+    returnedFontSettings,
+    featureFont,
+    setFeatureFont,
+    returnedFeatureFont,
+    onOpenClick,
+    handleGetUsfm,
+    handleUsfmText,
+    handleFilename,
+    open,
+    setOpen,
+    loadingStatus,
+    handleUsfmFileLoaded,
   } = toolbarCustomProps;
 
   const [graphiteEnabledSettings, setGraphiteEnabledSettings] = useState(false);
@@ -235,5 +235,26 @@ ToolbarCustom.propTypes = {
   /** Set Feature Font */
   setFeatureFont: PropTypes.func,
   /** Returned Feature Font from Print */
-  returnedFeatureFont: PropTypes.string,
+    returnedFeatureFont: PropTypes.string,
+  /** onOpenClick */
+  onOpenClick: PropTypes.func.isRequired,
+  /** handleGetUsfm */
+  handleGetUsfm: PropTypes.func.isRequired,
+  /** handleUsfmText */
+  handleUsfmText: PropTypes.func.isRequired,
+  /** handleFilename */
+  handleFilename: PropTypes.func.isRequired,
+  /** open */
+  open: PropTypes.bool,
+  /** setOpen */
+  setOpen: PropTypes.func.isRequired,
+  /** loadingStatus */
+  loadingStatus: PropTypes.func.isRequired,
+  /** handleUsfmFileLoaded */
+  handleUsfmFileLoaded: PropTypes.func.isRequired,
+};
+
+ToolbarCustom.defaultProps = {
+  selectedFontName: '',
+  open: false,
 };
