@@ -17,7 +17,7 @@ const keywordFont = 'sans-serif';
 
 export default function ToolbarCustom(toolbarCustomProps) {
   const {
-    selectedFontName,
+    selectedFontName = '',
     setSelectedFontName,
     selectedFontId,
     setSelectedFontId,
@@ -41,12 +41,12 @@ export default function ToolbarCustom(toolbarCustomProps) {
     handleGetUsfm,
     handleUsfmText,
     handleFilename,
-    open,
+    open = false,
     setOpen,
     loadingStatus,
     handleUsfmFileLoaded,
   } = toolbarCustomProps;
-
+  
   const [graphiteEnabledSettings, setGraphiteEnabledSettings] = useState(false);
 
   // embedded font naming convention used is "name version", so we remove "version" with pop to get just the name
@@ -252,9 +252,4 @@ ToolbarCustom.propTypes = {
   loadingStatus: PropTypes.func.isRequired,
   /** handleUsfmFileLoaded */
   handleUsfmFileLoaded: PropTypes.func.isRequired,
-};
-
-ToolbarCustom.defaultProps = {
-  selectedFontName: '',
-  open: false,
 };

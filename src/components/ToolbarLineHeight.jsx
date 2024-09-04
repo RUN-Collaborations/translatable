@@ -82,6 +82,3 @@ ToolbarLineHeight.propTypes = {
   /** Set Selected Line Height */
   setSelectedLineHeight: PropTypes.func.isRequired,
 };
-
-ToolbarLineHeight.defaultProps = {
-};

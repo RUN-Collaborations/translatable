@@ -18,12 +18,12 @@ const noneDetectedMsg = "none detected";
 
 export default function ToolbarSelectFont(ToolbarSelectFontProps) {
   const {
-    selectedFontName,
+    selectedFontName = '',
     setSelectedFontName,
-    selectedFontId,
+    selectedFontId = '',
     setSelectedFontId,
     setQuoteOrNot,
-    customFont,
+    customFont = '',
     setCustomFont,
     setTypeIsOn,
     assumeGraphite,
@@ -150,10 +150,4 @@ ToolbarSelectFont.propTypes = {
   setTypeIsOn: PropTypes.func.isRequired,
   /** Assume Graphite? */
   assumeGraphite: PropTypes.bool,
-};
-
-ToolbarSelectFont.defaultProps = {
-  selectedFontName: '',
-  selectedFontId: '',
-  customFont: '',
 };

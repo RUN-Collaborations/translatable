@@ -45,6 +45,3 @@ ToolbarGraphite.propTypes = {
   /** Handle Graphite Click */
   handleGraphiteClick: PropTypes.func.isRequired,
 };
-
-ToolbarGraphite.defaultProps = {
-};

@@ -129,6 +129,3 @@ WordAttributesAndAlignment.propTypes = {
   /** Number of Empty Lemmas as the Only Word Attribute -- |lemma="" \w* */
   wEmptyLemmaOnlyNum: PropTypes.number.isRequired,
 };
-
-WordAttributesAndAlignment.defaultProps = {
-};

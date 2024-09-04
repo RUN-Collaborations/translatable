@@ -7,12 +7,12 @@ export default function GetUsfm(getUsfmProps) {
     onOpenClick,
     handleUsfmText,
     handleFilename,
-    open,
+    open = false,
     handleGetUsfm,
     loadingStatus,
     handleUsfmFileLoaded,
   } = getUsfmProps;
-
+  
   const messageTitle = "Open or Import a Book"
   
   const importedUsfm = importPlaceholder.usfmText;
@@ -93,8 +93,4 @@ GetUsfm.propTypes = {
   loadingStatus: PropTypes.func.isRequired,
   /** handleUsfmFileLoaded Function runs setUsfmFileLoaded */
   handleUsfmFileLoaded: PropTypes.func.isRequired,
-};
-
-GetUsfm.defaultProps = {
-  open: false,
 };
