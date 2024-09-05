@@ -116,7 +116,7 @@ export default function SimpleEditor(simpleEditorProps) {
   const [featureFont, setFeatureFont] = useState(returnedFeatureFont);
 
   useEffect(() => {
-    if (fontSettings !== null) {
+    if (fontSettings.length !== 0) {
       const fontSettingsJsx = fontSettings.map((obj, index) => (
         <div key={index}> ~{obj.name}~ {obj.value},</div>
       ));

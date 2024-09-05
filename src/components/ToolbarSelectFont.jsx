@@ -11,7 +11,8 @@ import sx from "./ToolbarCustom.styles";
 import PropTypes from 'prop-types';
 
 import GraphiteEnabledWebFontsArray from '../embeddedWebFonts/GraphiteEnabledWebFonts.json';
-import '../embeddedWebFonts/GraphiteEnabledWebFonts.css';
+import openTypeEnabledWebFontsArray from '../embeddedWebFonts/OpenTypeEnabledWebFonts.json';
+import '../embeddedWebFonts/WebFonts.css';
 
 const noneDetectedGEMsg = "none detected";
 const noneDetectedMsg = "none detected";
@@ -57,7 +58,7 @@ export default function ToolbarSelectFont(ToolbarSelectFontProps) {
     setQuoteOrNot(event.target.value === "monospace" ? "" : "'");
   };
 
-  // Graphite-enabled web fonts with a different css id from the actual font name to avoid conflict with locally installed fonts (which could be a different version).
+  // Graphite-enabled web fonts use a different css id from the actual font name to avoid conflict with locally installed fonts (which could be a different version).
   const GraphiteEnabledWebFonts =
   assumeGraphite &&
   GraphiteEnabledWebFontsArray.map((font, index) => (
@@ -78,9 +79,21 @@ export default function ToolbarSelectFont(ToolbarSelectFontProps) {
         <FontMenuItem font={font} />
       </MenuItem>
     ));
-  
-  // Detecting locally installed fonts  (name = id):
-  const detectedFonts = useDetectFonts({ fonts: fontsArray });
+
+  /* Annapurna SIL 2.100 uses *some different* font features settings for rendering with OpenType vs. rendering with Graphite. Settings from openTypeEnabledFeatures should *not* be offered in Firefox for Annapurna SIL 2.100.
+   * Abyssinica SIL 2.201 and Padauk 5.001 render in both OpenType and Graphite using the *same* font features settings. We will exclude OpenType settings in Firefox from these two fonts, consistent with the 'RenderingUnknown' test result of 'RenderingGraphite'.
+   * Also note: OpenType-enabled web fonts use a different css id from the actual font name to avoid conflict with locally installed fonts (which could be a different version). */
+  const openTypeEnabledWebFonts =
+  openTypeEnabledWebFontsArray.filter((name) => (assumeGraphite ? (name.name != 'Annapurna SIL 2-100' && name.name != 'Abyssinica SIL 2-201' && name.name != 'Padauk 5-001') : name.name != '')).map((font, index) => (
+    <MenuItem key={index} value={font.name} dense>
+      <FontMenuItem font={font} />
+    </MenuItem>
+  ));
+
+  /* Detecting locally installed fonts  (name = id). Exceptions listed with local Graphite-enabled fonts in Firefox */
+  const adjFontsArray = fontsArray.filter((name) => 
+    (assumeGraphite ? (name.name != 'Annapurna SIL' && name.name != 'Abyssinica SIL' && name.name != 'Padauk') : name.name != ''));
+  const detectedFonts = useDetectFonts({ fonts: adjFontsArray });
 
   const detectedFontsComponents = detectedFonts.map((font, index) => (
     <MenuItem key={index} value={font.name} dense>
@@ -118,6 +131,10 @@ export default function ToolbarSelectFont(ToolbarSelectFontProps) {
                     noneDetectedGEMsg}
               </b>
               {detectedGEFontsComponents}
+              <b>
+                OpenType-Enabled Fonts:
+              </b>
+              {openTypeEnabledWebFonts}
               <hr />
               <b>
               Detected Fonts:{" "}

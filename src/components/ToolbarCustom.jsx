@@ -6,11 +6,13 @@ import ToolbarSelectFont from "./ToolbarSelectFont";
 import ToolbarLineHeight from "./ToolbarLineHeight";
 import ToolbarFontSize from "./ToolbarFontSize";
 import ToolbarFontFeatures from "./ToolbarFontFeatures";
-import ToolbarGraphite from "./ToolbarGraphite";
+// import ToolbarGraphite from "./ToolbarGraphite";
 import GetUsfm from "./GetUsfm";
 import sx from "./ToolbarCustom.styles";
-import { graphiteEnabledFeatures } from "font-detect-rhl";
+import {  openTypeEnabledFeatures, graphiteEnabledFeatures } from "font-detect-rhl";
+import OpenTypeEnabledWebFontsArray from '../embeddedWebFonts/OpenTypeEnabledWebFonts.json';
 import GraphiteEnabledWebFontsArray from '../embeddedWebFonts/GraphiteEnabledWebFonts.json';
+
 import PropTypes from 'prop-types';
 
 const keywordFont = 'sans-serif';
@@ -28,7 +30,7 @@ export default function ToolbarCustom(toolbarCustomProps) {
     selectedLineHeight,
     setSelectedLineHeight,
     assumeGraphite,
-    handleGraphiteClick,
+    // handleGraphiteClick,
     isDisabled,
     handlePreventClick,
     fontSettings,
@@ -47,23 +49,35 @@ export default function ToolbarCustom(toolbarCustomProps) {
     handleUsfmFileLoaded,
   } = toolbarCustomProps;
   
-  const [graphiteEnabledSettings, setGraphiteEnabledSettings] = useState(false);
+  const [smartFontSettings, setSmartFontSettings] = useState(false);
 
-  // embedded font naming convention used is "name version", so we remove "version" with pop to get just the name
+  /* Annapurna SIL 2.100 uses *some different* font features settings for rendering with OpenType vs. rendering with Graphite. 
+   *  In Firefox use settings from graphiteEnabledFeatures instead of openTypeEnabledFeatures for Annapurna SIL 2.100.
+   * Abyssinica SIL 2.201 and Padauk 5.001 render in both OpenType and Graphite using the *same* font features settings.
+   *  In Firefox this is using graphiteEnabledFeatures, consistent with the 'RenderingUnknown' test result of 'RenderingGraphite'. */
+  const enabledFeatures = ([...graphiteEnabledFeatures, ...openTypeEnabledFeatures.filter((name) => (name.name != 'Annapurna SIL' && name.name != 'Abyssinica SIL' && name.name != 'Padauk'))]);
+
+  const featureArray = (assumeGraphite ? enabledFeatures : openTypeEnabledFeatures)  
+
+  const fontIfListed = useMemo(() => featureArray.filter((name) => name?.name === selectedFontName).map(({ name }) => name),[featureArray, selectedFontName]);
+
+  const enabledWebFonts = useMemo(() => (
+    [...GraphiteEnabledWebFontsArray, ...OpenTypeEnabledWebFontsArray.filter((name) => (
+      name.name != 'Annapurna SIL 2-100' && name.name != 'Abyssinica SIL 2-201' && name.name != 'Padauk 5-001'
+    ))]),[]);
+
+  // embedded font naming convention used is "name version", so we remove "version" to get just the name
   const embeddedFontIfListed = useMemo(() => 
-    assumeGraphite &&
-    GraphiteEnabledWebFontsArray.filter((name) => name?.name === selectedFontName).map(
+    enabledWebFonts.filter((name) => name?.name === selectedFontName).map(
       ({ name }) => name.replace(" " + name.split(" ").pop(), ""))
-    .toString(),[assumeGraphite, selectedFontName]);
-
-  const fontIfListed = useMemo(() => graphiteEnabledFeatures.filter((name) => name?.name === selectedFontName).map(({ name }) => name),[selectedFontName]);
+    .toString(),[enabledWebFonts, selectedFontName]);
 
   useEffect(() => {
     if (fontIfListed.length > 0 || embeddedFontIfListed.length >0) {
-      setGraphiteEnabledSettings(true);
+      setSmartFontSettings(true);
     } else {
-      setGraphiteEnabledSettings(false);
-      setFontSettings(null);
+      setSmartFontSettings(false);
+      setFontSettings([]);
       setFeatureFont("");
     }
   }, [embeddedFontIfListed.length, fontIfListed.length, setFeatureFont, setFontSettings]);
@@ -86,22 +100,91 @@ export default function ToolbarCustom(toolbarCustomProps) {
   );
 
   const printPreviewButton = (
-    <button style={{height: "4.645em", margin: "0.1em auto"}} id="print" onClick={handlePreventClick}>
-      <span style={{ fontWeight: "bolder", textDecorationLine: "underline" }}>&nbsp;&nbsp;Print Preview&nbsp;&nbsp;</span><br /><span style={{ fontSize: "95%" }}>{quoteOrNot}{selectedFontName}{quoteOrNot}: {selectedFontSize}<br />line height: {selectedLineHeight}</span>
+    <button
+      style={{
+        height: "4.645em",
+        marginTop: "0.1em",
+        // margin: "0.1em auto",
+      }}
+      id="print"
+      onClick={handlePreventClick}
+    >
+      <span
+        style={{
+          fontWeight: "bolder",
+          textDecorationLine: "underline"
+        }}
+      >
+        &nbsp;&nbsp;Print Preview&nbsp;&nbsp;
+      </span>
+      <br />
+      <span style={{ fontSize: "95%" }}>
+        {quoteOrNot}{selectedFontName}{quoteOrNot}: {selectedFontSize}
+        <br />
+        line height: {selectedLineHeight}
+      </span>
     </button>
   );
   const printPreviewButtonOff = (
-    <button className="disabled" style={{height: "4.645em", padding: "0.25em 0.5em", margin: "0.1em 0.5em auto auto"}}>
-      <span style={{ fontWeight: "bolder", textDecorationLine: "underline" }}>&nbsp;&nbsp;Print Preview&nbsp;&nbsp;</span><br />{quoteOrNot}{selectedFontName}{quoteOrNot}: {selectedFontSize}<br />line height: {selectedLineHeight}
+    <button
+      className="disabled"
+      style={{
+        height: "4.645em",
+        padding: "0.25em 0.5em",
+        marginTop: "0.1em",
+        // margin: "0.1em 0.5em auto auto",
+      }}
+    >
+      <span
+        style={{
+          fontWeight: "bolder",
+          textDecorationLine: "underline",
+        }}
+      >
+        &nbsp;&nbsp;Print Preview&nbsp;&nbsp;
+      </span>
+      <br />
+      {quoteOrNot}{selectedFontName}{quoteOrNot}: {selectedFontSize}
+      <br />
+      line height: {selectedLineHeight}
     </button>
   );
-  const usfmEditorButton = (<button style={{height: "4.645em", margin: "0.1em auto"}} id="usfm" onClick={handlePreventClick}>USFM<br />Editor</button>);
-  const usfmEditorButtonOff = (<button className="disabled" style={{height: "4.645em", padding: "0.25em 0.5em", margin: "0.1em auto"}}>USFM<br />Editor</button>);  
+  const usfmEditorButton = (
+    <button
+      style={{
+        height: "4.645em",
+        marginTop: "0.1em",
+        // margin: "0.1em auto",
+      }}
+      id="usfm"
+      onClick={handlePreventClick}
+    >
+      USFM
+      <br />
+      Editor
+    </button>
+  );
+  const usfmEditorButtonOff = (
+    <button
+      className="disabled"
+      style={{
+        height: "4.645em",
+        padding: "0.25em 0.5em",
+        marginTop: "0.1em",
+        // margin: "0.1em auto",
+      }}
+    >
+      USFM
+      <br />
+      Editor
+    </button>);  
 
+  /*
   const toolbarGraphiteProps = {
     assumeGraphite,
     handleGraphiteClick,
   }
+  */
   
   const toolbarSelectFontProps = {
     selectedFontName,
@@ -127,6 +210,8 @@ export default function ToolbarCustom(toolbarCustomProps) {
     embeddedFontIfListed,
     selectedFontSize,
     selectedLineHeight,
+    assumeGraphite,
+    featureArray,
   };
 
   const getUsfmProps = {
@@ -165,9 +250,9 @@ export default function ToolbarCustom(toolbarCustomProps) {
               <Box sx={{ minWidth: 275 }}>
                 <Grid container spacing={1} style={{ margin: ".55em 0 0 1.25em" }}>
                   <Stack direction="row" spacing={0.75}>
-                    <ToolbarGraphite {...toolbarGraphiteProps} />
+                    {/** <ToolbarGraphite {...toolbarGraphiteProps} /> */}
                     {isDisabled ? printPreviewButtonOff : (<div>{printPreviewButton}</div>)}
-                    {assumeGraphite && graphiteEnabledSettings && <ToolbarFontFeatures {...toolbarFontFeaturesProps} />}
+                    {smartFontSettings && <ToolbarFontFeatures {...toolbarFontFeaturesProps} />}
                     {isDisabled ? usfmEditorButtonOff : (<div>{usfmEditorButton}</div>)}
                   </Stack>
                 </Grid>
@@ -219,7 +304,7 @@ ToolbarCustom.propTypes = {
   /** Assume Graphite? */
   assumeGraphite: PropTypes.bool,
   /** Handle Graphite Click */
-  handleGraphiteClick: PropTypes.func,
+  // handleGraphiteClick: PropTypes.func,
   /** Is Disabled? */
   isDisabled: PropTypes.bool,
   /** Handle Prevent Click */

@@ -2,7 +2,7 @@
   import { useState, useCallback, useMemo, useEffect } from "react";
   import { Box, ClickAwayListener, FormControl, createTheme, ThemeProvider, Grid } from "@mui/material";
   import { renderToString } from 'react-dom/server';
-  import { useDetectDir, graphiteEnabledFeatures } from "font-detect-rhl";
+  import { useDetectDir } from "font-detect-rhl";
   import FontFeatureDefaults from "../helpers/FontFeatureDefaults";
   import FontFeatureSettings from "./FontFeatureSettings";
   import PropTypes from 'prop-types';
@@ -19,6 +19,8 @@
       embeddedFontIfListed,
       selectedFontSize,
       selectedLineHeight,
+      assumeGraphite,
+      featureArray,
     } = toolbarFontFeaturesProps;
 
     const [open, setOpen] = useState(false);
@@ -70,7 +72,7 @@
       setFeatureFont(embeddedFontIfListed.length > 0 ? embeddedFontIfListed : selectedFontName);
     },[embeddedFontIfListed, selectedFontName, setFeatureFont])
 
-    const fontSettingsArr = FontFeatureDefaults({ featureFont: featureFont })
+    const fontSettingsArr = FontFeatureDefaults({ featureFont: featureFont, featureArray, })
 
     // It is okay when don't have a recent returnedFontSettings. It's purpose is to keep from changing back to default values when we do.
     const arrayCheck = (returnedFontSettings?.length || 0);
@@ -92,7 +94,7 @@
     },[featureFont]);
     
     // This gets all radio label text and uses it to identify the most common text direction, for use in the font feature settings container.
-    const labelJsxText = useMemo(() => graphiteEnabledFeatures.filter((name) => name?.name === featureFont).map((font, fontIndex) => (
+    const labelJsxText = useMemo(() => featureArray.filter((name) => name?.name === featureFont).map((font, fontIndex) => (
       <div key={fontIndex}>
         {font.categories.map((categories, categoriesIndex) => {
           return (<div key={categoriesIndex}>
@@ -113,7 +115,7 @@
         </div>)
         })}
       </div>
-    )), [featureFont]);
+    )), [featureArray, featureFont]);
 
     // convert jsx return to string, replace quote and apostrophe html special entities, and remove html tags and attributes
     const labelStr = useMemo(() => renderToString(labelJsxText).replace(/&quot;/ig, '"').replace(/&#x27;/ig, "'").replace(/(<([^>]+)>)/ig, ''),[labelJsxText]);
@@ -197,6 +199,8 @@
       radioLeftMargin,
       labelStyle,
       diffStyle,
+      assumeGraphite,
+      featureArray,
     };
 
     const DrawerList = (

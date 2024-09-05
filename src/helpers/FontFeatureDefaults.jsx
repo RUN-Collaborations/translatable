@@ -1,14 +1,14 @@
 import { useMemo } from "react";
 import { renderToString } from 'react-dom/server';
-import { graphiteEnabledFeatures } from "font-detect-rhl";
 
 export default function FontFeatureDefaults(FontFeatureDefaultsProps) {
   const {
     featureFont,
+    featureArray,
   } = FontFeatureDefaultsProps;
 
   // This creates an array of font settings names and default values
-  const fontSettingsJsx = useMemo(() => graphiteEnabledFeatures.filter((name) => name?.name === featureFont).map((font, fontIndex) => (
+  const fontSettingsJsx = useMemo(() => featureArray.filter((name) => name?.name === featureFont).map((font, fontIndex) => (
     <div key={fontIndex}>
       {font.categories.map((categories, categoriesIndex) => {
         return (<div key={categoriesIndex}>
@@ -28,7 +28,7 @@ export default function FontFeatureDefaults(FontFeatureDefaultsProps) {
       </div>)
       })}
     </div>
-  )), [featureFont]);
+  )), [featureArray, featureFont]);
   // convert jsx return to string and remove html tags and attributes (e.g., div's)
   const fontSettingsStr = renderToString(fontSettingsJsx).replace(/(<([^>]+)>)/ig, '');
   // remove the last comma, change [] to {} and ~ to " and convert string to an array of objects

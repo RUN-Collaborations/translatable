@@ -3,24 +3,24 @@
 ## Project Goals
 - Edit and print existing [usfm](https://ubsicap.github.io/usfm/) files
 - Empower users to choose their font, font-size, line-height, and other font-features where applicable.
-- Take advantage of [Graphite](https://graphite.sil.org/)-enabled smart font features in *Firefox<sup id="a1">[[1]](#f1)</sup>* including collision avoidance, spacing, and other adjustable font-specific display features.
-- Engage both [Graphite](https://graphite.sil.org/) in *Firefox<sup id="a1">[[1]](#f1)</sup>* and [Open Type](https://developer.mozilla.org/en-US/docs/Web/CSS/font-feature-settings) character variant settings.
+- Include both [Graphite](https://graphite.sil.org/) (in *Firefox*)<sup id="a1">[[1]](#f1)</sup> and [Open Type](https://developer.mozilla.org/en-US/docs/Web/CSS/font-feature-settings) font features settings.
 
 ## Font Selection
 - Font selection is offered in good faith. Please *honor* the end-user license agreements (EULA) of your fonts and ensure the font you have in mind is appropriate *for the way you plan to use it*. Here is [How To Tell If A Font Is Copyrighted & Why You Should Always Check](https://logosbynick.com/how-to-tell-if-a-font-is-copyrighted/).
-- While you can type in the name of any [unicode](https://en.wikipedia.org/wiki/Unicode) font that you have locally, a dropdown list of many detected locally installed fonts will also be presented.
-- Some embedded graphite-enabled fonts are also included, which fall under [SIL's Open Font License](https://openfontlicense.org/how-to-use-ofl-fonts/), or you can use your own locally installed versions.
+- While the name of any local [unicode](https://en.wikipedia.org/wiki/Unicode) font can be typed in, a dropdown list of many detected locally installed fonts are also be presented.
+- Some embedded Graphite and OpenType enabled fonts are also included under [SIL's Open Font License](https://openfontlicense.org/how-to-use-ofl-fonts/).
+- Locally installed versions of embedded fonts can also be used, which is useful when a different version of a font is needed.
 - Line Height can be specified.
 - Font Size can be specified in general, with the presented ratio of differently sized elements maintained.
 
-## [Graphite](https://graphite.sil.org/)-enabled Smart Font Features
-When Firefox is in use, user customization of smart font features is enabled with each option displayed for user selection. This allows user preferences for collision avoidance, spacing, regional character variation, and other adjustable font-specific display features when any of the following fonts are selected:
+## [Graphite](https://graphite.sil.org/) and [Open Type](https://developer.mozilla.org/en-US/docs/Web/CSS/font-feature-settings) Enabled Font Features
+Adjustable font-specific display options are available when any of the following fonts are selected:
 - Abyssinica SIL - many of the languages of Ethiopia and Eritrea
 - Alkalami - the Kano region of Nigeria and in Niger
 - Andika - comprehensive support for thousands of languages around the world written with  Latin and Cyrillic letters and their many variants, including a wide range of additional characters and symbols useful for linguistic and literacy work.
 - Annapurna SIL - writing systems that use the Devanagari script
-- Awami Nastaliq - wide variety of languages of South Asia, including but not limited to Urdu
-- Charis SIL - wide range of languages that use the Latin and Cyrillic scripts.
+- Awami Nastaliq<sup>(*)</sup> - wide variety of languages of South Asia, including but not limited to Urdu
+- Charis SIL - wide range of languages that use the Latin and Cyrillic scripts
 - Doulos SIL - wide range of languages that use the Latin and Cyrillic scripts
 - Gentium Plus - Latin, Cyrillic, and Greek scripts
 - Harmattan - languages using the Arabic script in West Africa.
@@ -31,8 +31,7 @@ When Firefox is in use, user customization of smart font features is enabled wit
 - Padauk - writing systems that use the Myanmar script.
 - Tagmukay - a Shifinagh script font with support for the Tawallammat Tamajaq language
 
-## Character Variant Settings
-- Additional character variant settings for [Open Type](https://developer.mozilla.org/en-US/docs/Web/CSS/font-feature-settings) fonts are also planned.
+(*) Firefox only (Graphite-only), including collision avoidance and spacing variation.
 
 ## Print
 - With selected font, features, size and line height.
@@ -58,12 +57,13 @@ When Firefox is in use, user customization of smart font features is enabled wit
 - Not fully functional on iPadOS, iOS, or Android
 
 ## On the Drawing Board:
+- Import from Word Processors in certain specific cases.
 - Make available as a Progressive Web App
 - Open a project of multiple books at at a time, rather than just a single book
 - Upgrade to a Multi-lingual / localized interface
 
 ## Getting Started
-- There are many good translation apps and ongoing translation app projects (e.g., [Scribe Scripture Editor](https://scribe.bible/), [Paratext](https://paratext.org/), and others). Start your projects with such an app and use them if available font features and accompanying ecosystems can work for your reality, cultural context, and writing style. For any cases where there still is a remaining gap, export your work, then open it here in Firefox to access smart font features, and see if this fits your context or augments needs.
+- There are many good translation apps and ongoing translation app projects (e.g., [Scribe Scripture Editor](https://scribe.bible/), [V-Cana](https://v-cana.com/), [Paratext](https://paratext.org/), and others). Start your projects with such an app and use them if available font features and accompanying ecosystems can work for your reality, cultural context, and writing style. For any cases where there still is a remaining gap, export your work, then open it here in Firefox to access smart font features, and see if this fits your context or augments needs.
 
 ## Endnotes <sub><sup>... [↩](#toc)</sup></sub>
-[<b id="f1">1</b>] ... [Firefox](https://www.mozilla.org/) supports [Graphite](https://graphite.sil.org/). Other browsers do not yet do so, including Google Chrome, Safari, Microsoft Edge, Brave, Opera, DuckDuckGo, Vivaldi, with the notable exception of some Firefox browser forks such as [Pale Moon](https://www.palemoon.org/) though that one is not currently supported by the [OCE Editor Tools](https://github.com/RUN-Collaborations/translatable) utilized. ... [↩](#a1)
+[<b id="f1">1</b>] ... [Firefox](https://www.mozilla.org/) supports [Graphite](https://graphite.sil.org/). Other browsers currently do not, including Google Chrome, Safari, Microsoft Edge, Brave, Opera, DuckDuckGo, Vivaldi, with the exception of some Firefox browser forks such as [Pale Moon](https://www.palemoon.org/). However, Pale Moon is not currently supported by the [OCE Editor Tools](https://github.com/RUN-Collaborations/translatable) utilized. ... [↩](#a1)

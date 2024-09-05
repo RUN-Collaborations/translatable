@@ -18,7 +18,7 @@ export default function AppLayout() {
     "selectedFontSize": "125%",
     "selectedLineHeight": "2.5",
     "fontSettingsCss": "",
-    "fontSettings": null,
+    "fontSettings": [],
     "featureFont" : "",
     "filePath": "",
     "stripAlignment": false,
