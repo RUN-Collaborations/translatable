@@ -2,7 +2,6 @@ import { useMemo } from "react";
 import PropTypes from "prop-types";
 import { FormLabel, FormControlLabel, RadioGroup, Radio, Typography, Tooltip } from "@mui/material";
 import DOMPurify from 'dompurify';
-import { graphiteEnabledFeatures } from "font-detect-rhl";
 
 export default function FontFeatureSettings(fontFeatureSettingsProps) {
   const {
@@ -14,6 +13,7 @@ export default function FontFeatureSettings(fontFeatureSettingsProps) {
     radioLeftMargin,
     labelStyle,
     diffStyle,
+    featureArray,
   } = fontFeatureSettingsProps;
 
   const labelDivStyle = useMemo(() => ({
@@ -47,7 +47,7 @@ export default function FontFeatureSettings(fontFeatureSettingsProps) {
   }), []);
 
   let count = -1;
-  const featureSettings = useMemo(() => graphiteEnabledFeatures.filter((name) => name?.name === featureFont).map((font, fontIndex) => (
+  const featureSettings = useMemo(() => featureArray.filter((name) => name?.name === featureFont).map((font, fontIndex) => (
     <div key={fontIndex}>
       {font.categories.map((categories, categoriesIndex) => {
         return (<div key={categoriesIndex}>
@@ -63,7 +63,7 @@ export default function FontFeatureSettings(fontFeatureSettingsProps) {
                         aria-labelledby={set.id}
                         defaultValue={set.default}
                         name={set.name}
-                        value={fontSettings === null ? set.default : fontSettings[++count].value}
+                        value={fontSettings.length === 0 ? set.default : fontSettings[++count].value}
                         onChange={handleChange}
                         sx={radioColor}
                       >
@@ -90,7 +90,7 @@ export default function FontFeatureSettings(fontFeatureSettingsProps) {
       </div>)
       })}
     </div>
-  )), [featureFont, labelDivStyle, labelMarkStyle, fontSettings, count, handleChange, radioColor, placementDir, tooltipPosition, radioRightMargin, radioLeftMargin, labelStyle, diffStyle]);
+  )), [featureArray, featureFont, labelDivStyle, labelMarkStyle, fontSettings, count, handleChange, radioColor, placementDir, tooltipPosition, radioRightMargin, radioLeftMargin, labelStyle, diffStyle]);
 
   return featureSettings;
 }
