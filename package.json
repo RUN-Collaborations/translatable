@@ -1,7 +1,7 @@
 {
   "name": "translatable",
   "license": "MIT",
-  "version": "0.1.07",
+  "version": "0.1.08",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -21,7 +21,7 @@
     "@oce-editor-tools/mui-core": "^v0.1.31-beta.15",
     "browser-fs-access": "^0.35.0",
     "dompurify": "^3.1.6",
-    "font-detect-rhl": "^1.1.2",
+    "font-detect-rhl": "^1.1.4",
     "js-file-download": "^0.4.12",
     "prop-types": "^15.8.1",
     "react": "^18.2.0",
@@ -40,5 +40,5 @@
     "eslint-plugin-react-refresh": "^0.4.6",
     "vite": "^5.2.0"
   },
-  "peerDependencies": {}
+  "packageManager": "yarn@1.22.22"
 }
