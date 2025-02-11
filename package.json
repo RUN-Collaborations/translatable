@@ -1,7 +1,7 @@
 {
   "name": "translatable",
   "license": "MIT",
-  "version": "0.1.08",
+  "version": "0.1.09",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -21,7 +21,7 @@
     "@oce-editor-tools/mui-core": "^v0.1.31-beta.15",
     "browser-fs-access": "^0.35.0",
     "dompurify": "^3.1.6",
-    "font-detect-rhl": "^1.1.4",
+    "font-detect-rhl": "^1.1.7",
     "js-file-download": "^0.4.12",
     "prop-types": "^15.8.1",
     "react": "^18.2.0",

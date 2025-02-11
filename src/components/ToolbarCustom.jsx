@@ -53,7 +53,7 @@ export default function ToolbarCustom(toolbarCustomProps) {
 
   /* Annapurna SIL 2.100 uses *some different* font features settings for rendering with OpenType vs. rendering with Graphite. 
    *  In Firefox use settings from graphiteEnabledFeatures instead of openTypeEnabledFeatures for Annapurna SIL 2.100.
-   * Abyssinica SIL 2.201 and Padauk 5.001 render in both OpenType and Graphite using the *same* font features settings.
+   * Abyssinica SIL 2.201 and Padauk 5.100 render in both OpenType and Graphite using the *same* font features settings.
    *  In Firefox this is using graphiteEnabledFeatures, consistent with the 'RenderingUnknown' test result of 'RenderingGraphite'. */
   const enabledFeatures = ([...graphiteEnabledFeatures, ...openTypeEnabledFeatures.filter((name) => (name.name != 'Annapurna SIL' && name.name != 'Abyssinica SIL' && name.name != 'Padauk'))]);
 
@@ -63,7 +63,7 @@ export default function ToolbarCustom(toolbarCustomProps) {
 
   const enabledWebFonts = useMemo(() => (
     [...GraphiteEnabledWebFontsArray, ...OpenTypeEnabledWebFontsArray.filter((name) => (
-      name.name != 'Annapurna SIL 2-100' && name.name != 'Abyssinica SIL 2-201' && name.name != 'Padauk 5-001'
+      name.name != 'Annapurna SIL 2-100' && name.name != 'Abyssinica SIL 2-201' && name.name != 'Padauk 5-100'
     ))]),[]);
 
   // embedded font naming convention used is "name version", so we remove "version" to get just the name

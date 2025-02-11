@@ -81,10 +81,10 @@ export default function ToolbarSelectFont(ToolbarSelectFontProps) {
     ));
 
   /* Annapurna SIL 2.100 uses *some different* font features settings for rendering with OpenType vs. rendering with Graphite. Settings from openTypeEnabledFeatures should *not* be offered in Firefox for Annapurna SIL 2.100.
-   * Abyssinica SIL 2.201 and Padauk 5.001 render in both OpenType and Graphite using the *same* font features settings. We will exclude OpenType settings in Firefox from these two fonts, consistent with the 'RenderingUnknown' test result of 'RenderingGraphite'.
+   * Abyssinica SIL 2.201 and Padauk 5.100 render in both OpenType and Graphite using the *same* font features settings. We will exclude OpenType settings in Firefox from these two fonts, consistent with the 'RenderingUnknown' test result of 'RenderingGraphite'.
    * Also note: OpenType-enabled web fonts use a different css id from the actual font name to avoid conflict with locally installed fonts (which could be a different version). */
   const openTypeEnabledWebFonts =
-  openTypeEnabledWebFontsArray.filter((name) => (assumeGraphite ? (name.name != 'Annapurna SIL 2-100' && name.name != 'Abyssinica SIL 2-201' && name.name != 'Padauk 5-001') : name.name != '')).map((font, index) => (
+  openTypeEnabledWebFontsArray.filter((name) => (assumeGraphite ? (name.name != 'Annapurna SIL 2-100' && name.name != 'Abyssinica SIL 2-201' && name.name != 'Padauk 5-100') : name.name != '')).map((font, index) => (
     <MenuItem key={index} value={font.name} dense>
       <FontMenuItem font={font} />
     </MenuItem>

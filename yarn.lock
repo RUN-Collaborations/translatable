@@ -2946,10 +2946,10 @@ font-detect-rhl@^1.0.9:
     prop-types "^15.6.1"
     use-deep-compare "^1.1.0"
 
-font-detect-rhl@^1.1.4:
-  version "1.1.4"
-  resolved "https://registry.yarnpkg.com/font-detect-rhl/-/font-detect-rhl-1.1.4.tgz#4ebf1775ebba101813f882ca770b84e1e6f81c51"
-  integrity sha512-SJIPC9Jqn1CWI8+cTmcm9CqF92bXvqJqGLllrpU2BzNxHrm+cRFBfzh9xx4AO+oMeCGbFQ01qnd6F31iwFHPyw==
+font-detect-rhl@^1.1.7:
+  version "1.1.7"
+  resolved "https://registry.yarnpkg.com/font-detect-rhl/-/font-detect-rhl-1.1.7.tgz#0c0b61500c682962b80b669053638da7ba62cd14"
+  integrity sha512-2HbmAPVJCd1u1ddNqJzFUXyYLvHN8ZnmGLL7cduR57mBr1dI9fPwyXZ9x/OLs58H7uP/lmeqqmHyTl2XefKoWQ==
   dependencies:
     prop-types "^15.6.1"
     use-deep-compare "^1.1.0"

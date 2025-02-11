@@ -4,6 +4,7 @@
 - Edit and print existing [usfm](https://ubsicap.github.io/usfm/) files
 - Empower users to choose their font, font-size, line-height, and other font-features where applicable.
 - Include both [Graphite](https://graphite.sil.org/) (in *Firefox*)<sup id="a1">[[1]](#f1)</sup> and [Open Type](https://developer.mozilla.org/en-US/docs/Web/CSS/font-feature-settings) font features settings.
+- Leverage [Panksomia-Web](https://github.com/pankosmia/pankosmia-web) for offline installation and use.
 
 ## Font Selection
 - Font selection is offered in good faith. Please *honor* the end-user license agreements (EULA) of your fonts and ensure the font you have in mind is appropriate *for the way you plan to use it*. Here is [How To Tell If A Font Is Copyrighted & Why You Should Always Check](https://logosbynick.com/how-to-tell-if-a-font-is-copyrighted/).
@@ -58,8 +59,8 @@ Adjustable font-specific display options are available when any of the following
 
 ## On the Drawing Board:
 - Import from Word Processors in certain specific cases.
-- Make available as a Progressive Web App
-- Open a project of multiple books at at a time, rather than just a single book
+- ~~Make available as a Progressive Web App~~ Leverage [Panksomia-Web](https://github.com/pankosmia/pankosmia-web) for offline installation and use.
+- Open a project of multiple books at at a time, rather than just a single book.
 - Upgrade to a Multi-lingual / localized interface
 
 ## Getting Started
